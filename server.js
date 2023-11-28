@@ -29,7 +29,7 @@ app.get('/logs', async (req, res) => {
       //params: { appName }
       encoding: 'utf8'
     });
-    console.log("logResponse",JSON.stringify(logsResponse));
+    console.log("logResponse",JSON.stringify(logsResponse.data));
     const logs = logsResponse.data.data.logs;
     
     res.send(logs);
