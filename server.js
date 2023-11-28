@@ -27,9 +27,10 @@ app.get('/logs', async (req, res) => {
     const logsResponse = await axios.get(`${caproverUrl}api/v2/user/apps/appData/${appName}/logs`, {
       headers: { 'x-captain-auth': token },
       //params: { appName }
+      enco
     });
     console.log("logResponse",JSON.stringify(logsResponse));
-    const logs = logsResponse.data.data.app.appLogs.logs;
+    const logs = logsResponse.data.data.logs;
     
     res.send(logs);
   } catch (error) {
