@@ -28,7 +28,7 @@ app.get('/logs', async (req, res) => {
       headers: { 'x-captain-auth': token },
       //params: { appName }
     });
-    const logs = logsResponse.data.app.appLogs.logs;
+    const logs = logsResponse.data.data.app.appLogs.logs;
     
     res.send(logs);
   } catch (error) {
