@@ -13,6 +13,7 @@ app.get('/logs', async (req, res) => {
     const tokenResponse = await axios.post(`${caproverUrl}api/v2/login`, {
       password: caproverPassword
     });
+    console.log("tokenResponse",tokenResponse);
     const token = tokenResponse.data.token;
 
     // Recupera i log usando l'API di CapRover
