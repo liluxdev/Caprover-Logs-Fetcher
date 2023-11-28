@@ -21,11 +21,10 @@ app.get('/logs', async (req, res) => {
     const tokenResponse = await axios.post(`${caproverUrl}api/v2/login`, {
       password: caproverPassword
     });
-    console.log("tokenResponse",tokenResponse);
     const token = tokenResponse.data.data.token;
 
     // Recupera i log usando l'API di CapRover
-    const logsResponse = await axios.get(`${caproverUrl}api/v2/apps/`, {
+    const logsResponse = await axios.get(`${caproverUrl}api/v2/user/apps/appData`, {
       headers: { 'x-captain-auth': token },
       params: { appName }
     });
@@ -33,7 +32,7 @@ app.get('/logs', async (req, res) => {
     
     res.send(logs);
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
     res.status(500).send('Errore nel recuperare i log: ' + error.message);
   }
 });
