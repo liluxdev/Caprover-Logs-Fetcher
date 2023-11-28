@@ -5,10 +5,18 @@ const app = express();
 const port = process.env.PORT || 3000;
 const caproverUrl = process.env.CAPROVER_URL;
 const caproverPassword = process.env.CAPROVER_PASSWORD;
+const allowedApps = process.env.ALLOWED_APPS.split(',');
 
 app.get('/logs', async (req, res) => {
   try {
-    console.log("Recuperando i log da CapRover", req.query.appName);
+    const appName = req.query.appName;
+    if (!appName) {
+      return res.status(400).send('Il parametro "appName" è obbligatorio');
+    }
+    if (!allowedApps.includes(appName)) {
+      return res.status(400).send('Il parametro "appName" non è valido');
+    }
+    console.log("Recuperando i log da CapRover",appName);
     // Ottenere token da CapRover
     const tokenResponse = await axios.post(`${caproverUrl}api/v2/login`, {
       password: caproverPassword
@@ -19,7 +27,7 @@ app.get('/logs', async (req, res) => {
     // Recupera i log usando l'API di CapRover
     const logsResponse = await axios.get(`${caproverUrl}api/v2/apps/appData`, {
       headers: { 'x-captain-auth': token },
-      params: { appName: req.query.appName }
+      params: { appName }
     });
     const logs = logsResponse.data.app.appLogs.logs;
     
