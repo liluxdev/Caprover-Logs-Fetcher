@@ -6,9 +6,18 @@ const port = process.env.PORT || 3000;
 const caproverUrl = process.env.CAPROVER_URL;
 const caproverPassword = process.env.CAPROVER_PASSWORD;
 const allowedApps = process.env.ALLOWED_APPS.split(',');
+const SECRTET = process.env.SECRET;
 
 app.get('/logs', async (req, res) => {
   try {
+    //check secret
+    const secret = req.query.secret;
+    if (!secret) {
+      return res.status(400).send('Il parametro "secret" è obbligatorio');
+    }
+    if (secret!== SECRTET) {
+      return res.status(400).send('Il parametro "secret" non è valido');
+    }
     const appName = req.query.appName;
     if (!appName) {
       return res.status(400).send('Il parametro "appName" è obbligatorio');
