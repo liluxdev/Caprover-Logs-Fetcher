@@ -10,13 +10,13 @@ app.get('/logs', async (req, res) => {
   try {
     console.log("Recuperando i log da CapRover", req.query.appName);
     // Ottenere token da CapRover
-    const tokenResponse = await axios.post(`${caproverUrl}/api/v2/login`, {
+    const tokenResponse = await axios.post(`${caproverUrl}api/v2/login`, {
       password: caproverPassword
     });
     const token = tokenResponse.data.token;
 
     // Recupera i log usando l'API di CapRover
-    const logsResponse = await axios.get(`${caproverUrl}/api/v2/apps/appData`, {
+    const logsResponse = await axios.get(`${caproverUrl}api/v2/apps/appData`, {
       headers: { 'x-captain-auth': token },
       params: { appName: req.query.appName }
     });
