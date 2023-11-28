@@ -23,6 +23,7 @@ app.get('/logs', async (req, res) => {
     
     res.send(logs);
   } catch (error) {
+    console.error(error);
     res.status(500).send('Errore nel recuperare i log: ' + error.message);
   }
 });
