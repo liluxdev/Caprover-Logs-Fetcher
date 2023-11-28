@@ -1,0 +1,14 @@
+
+{
+  "name": "caprover-logs-fetcher",
+  "version": "1.0.0",
+  "description": "Recupera i log da CapRover",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1"
+  }
+}
