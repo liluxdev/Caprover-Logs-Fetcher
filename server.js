@@ -25,7 +25,7 @@ app.get('/logs', async (req, res) => {
     const token = tokenResponse.data.data.token;
 
     // Recupera i log usando l'API di CapRover
-    const logsResponse = await axios.get(`${caproverUrl}api/v2/apps/appData`, {
+    const logsResponse = await axios.get(`${caproverUrl}api/v2/apps/`, {
       headers: { 'x-captain-auth': token },
       params: { appName }
     });
