@@ -32,7 +32,7 @@ app.get('/logs', async (req, res) => {
     console.log("logResponse",JSON.stringify(logsResponse.data));
     const logs = logsResponse.data.data.logs;
     
-    res.send(logs);
+    res.send(`<pre>${logs}</pre>`);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Errore nel recuperare i log: ' + error.message);
