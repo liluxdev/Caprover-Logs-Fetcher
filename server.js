@@ -8,6 +8,7 @@ const caproverPassword = process.env.CAPROVER_PASSWORD;
 
 app.get('/logs', async (req, res) => {
   try {
+    console.log("Recuperando i log da CapRover", req.query.appName);
     // Ottenere token da CapRover
     const tokenResponse = await axios.post(`${caproverUrl}/api/v2/login`, {
       password: caproverPassword
