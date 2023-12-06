@@ -232,7 +232,7 @@
         
             const newLogs = `<pre>${consoleLogs}</pre>`;
             const oldHtmlConsole = document.querySelector(".console-logs").innerHTML.trim();
-            console.log({oldHtml, newLogs, equals: oldHtmlConsole === newLogs.trim()});
+            console.log({oldHtmlConsole, newLogs, equals: oldHtmlConsole === newLogs.trim()});
 
             if ( oldHtmlConsole !== newLogs.trim() ){
                 if (document.querySelector(".console-logs:hover") === null){
@@ -243,7 +243,7 @@
           
             const newBuildLogs = `<pre>${buildLogs}</pre>`;
             const oldHtmlBuild = document.querySelector(".build-logs").innerHTML.trim();
-            console.log({oldHtml, newLogs, equals: oldHtmlBuild === newBuildLogs.trim()});
+            console.log({oldHtmlBuild, newLogs, equals: oldHtmlBuild === newBuildLogs.trim()});
 
             if ( oldHtmlBuild !== newBuildLogs.trim() ){
                 if (document.querySelector(".build-logs:hover") === null){
