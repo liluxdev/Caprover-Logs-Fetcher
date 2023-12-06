@@ -180,12 +180,15 @@
             const secret = urlParams.get('secret');
             
             // Se appName non è nei parametri di ricerca, prendilo dalla select
-            if (!appName) {
-                appName = document.getElementById('appNameSelect').value;
+            const appNameSelected = document.getElementById('appNameSelect').value;
+            if (appNameSelected){
                 if (appName === 'Scegli un\'app...') {
                     return; // Non eseguire la fetch se non è stata selezionata un'app
                 }
+                appName = appNameSelected;
             }
+               
+            
 
             const fetchUrl = new URL('/api', window.location.href);
             fetchUrl.searchParams.set('appName', appName);
