@@ -185,14 +185,14 @@
                 appNameSelect.add(option);
             });
       }
-      window.bttRefreshLabel = document.querySelector("#bttRefresh").innerHTML;
+      window.bttRefreshLabel = 'Aggiorna';
       async function fetchLogs() {
-        const oldBttRefresh = document.querySelector("#bttRefresh.standby").innerHTML;
+        const oldBttRefresh = document.querySelector("#bttRefresh.standby")?.innerHTML;
         if (bttRefreshLabel !== oldBttRefresh){
             bttRefreshLabel = oldBttRefresh;
+            document.querySelector("#bttRefresh").innerHTML = "Aggiornando...";
+            document.querySelector("#bttRefresh").classList.remove("standby");
         }
-        document.querySelector("#bttRefresh").innerHTML = "Aggiornando...";
-        document.querySelector("#bttRefresh").classList.remove("standby");
         try {
             // Estrai i parametri di ricerca dall'URL
             const urlParams = new URLSearchParams(window.location.search);
