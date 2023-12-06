@@ -36,6 +36,8 @@
           const {logs: consoleLogs, buildLogs, isAppBuilding} = await fetch(
             location.href.replace("/?", "/logs?")
           ).then((res) => res.json());
+
+          console.log({consoleLogs, buildLogs, isAppBuilding});
     
           document.getElementById(
             "console-logs"
