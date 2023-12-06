@@ -163,6 +163,7 @@
 
     <script>
       let isAppNamesPopulated = false;
+      let enabledAutoRefresh = true;
       function populateAllowedApps(allowedApps){
              if (isAppNamesPopulated){
                 return;
@@ -277,8 +278,12 @@
             if (consoleLogsContainer && buildLogsContainer) {
                 const consoleScrollTarget = consoleLogsContainer.scrollHeight - consoleLogsContainer.clientHeight;
                 const buildScrollTarget = buildLogsContainer.scrollHeight - buildLogsContainer.clientHeight;
-                smoothScrollTo(consoleLogsContainer, consoleScrollTarget);
-                smoothScrollTo(buildLogsContainer, buildScrollTarget);
+                if (document.querySelector(".console-logs:hover") === null){
+                    smoothScrollTo(consoleLogsContainer, consoleScrollTarget);
+                }
+                if (document.querySelector(".build-logs:hover") === null){
+                    smoothScrollTo(buildLogsContainer, buildScrollTarget);
+                }
             }
 
  // initSplitPane();
@@ -290,7 +295,7 @@
             positionClass: 'toast-bottom-right',
             timeOut: 3000
         });
-        if (isAppBuilding){
+        if (isAppBuilding || enabledAutoRefresh){
             setTimeout(()=>fetchLogs(), 5000);
         }
         } catch (error) {
