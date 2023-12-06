@@ -130,7 +130,7 @@
                     <option value="0" selected>Scegli un'app...</option>
                     <!-- Le opzioni verranno generate dinamicamente -->
                 </select>
-                <button id="bttRefresh" class="btn btn-primary" onclick="fetchLogs()">Aggiorna Log</button>
+                <button id="bttRefresh" class="btn btn-primary standby" onclick="fetchLogs()">Aggiorna Log</button>
                 <i id="status-icon" class="fas fa-sync-alt" style="margin-left: 10px;"></i>
             </div>
     
@@ -187,7 +187,15 @@
       }
       window.bttRefreshLabel = 'Aggiorna Log';
       async function fetchLogs() {
-
+        if (!document.querySelector("#bttRefresh").classList.contains("standby")){
+            toastr.error('Attendere il completamento del caricamento dei log', 'Errore', {
+                closeButton: true,
+                progressBar: true,
+                positionClass: 'toast-bottom-right',
+                timeOut: 5000
+            });
+            return;
+        }
             document.querySelector("#bttRefresh").innerHTML = "Aggiornando...";
             document.querySelector("#bttRefresh").classList.remove("standby");
         
