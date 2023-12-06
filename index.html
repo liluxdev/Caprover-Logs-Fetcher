@@ -185,14 +185,12 @@
                 appNameSelect.add(option);
             });
       }
-      window.bttRefreshLabel = 'Aggiorna';
+      window.bttRefreshLabel = 'Aggiorna Log';
       async function fetchLogs() {
-        const oldBttRefresh = document.querySelector("#bttRefresh.standby")?.innerHTML;
-        if (bttRefreshLabel !== oldBttRefresh && oldBttRefresh){
-            bttRefreshLabel = oldBttRefresh;
+
             document.querySelector("#bttRefresh").innerHTML = "Aggiornando...";
             document.querySelector("#bttRefresh").classList.remove("standby");
-        }
+        
         try {
             // Estrai i parametri di ricerca dall'URL
             const urlParams = new URLSearchParams(window.location.search);
