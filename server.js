@@ -55,7 +55,7 @@ app.get("/logs", async (req, res) => {
     console.log("buildLogsResponse", JSON.stringify(buildLogsResponse.data));
     const {logs:buildLogs, isAppBuilding} = buildLogsResponse.data.data;
 
-    res.send(JSON.stringify({ isAppBuilding, logs, buildLogs }));
+    res.send(JSON.stringify({ isAppBuilding, logs, buildLogs,allowedApps }));
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Errore nel recuperare i log: " + error.message);

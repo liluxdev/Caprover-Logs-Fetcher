@@ -77,6 +77,7 @@
             overflow-y: auto;
             color: #fafafa !important;
             max-width: 100%;
+            margin: 0px;
         }
         #left-pane, #right-pane {
             display: flex;
@@ -109,10 +110,15 @@
     </style>    
   </head>
   <body>
-                <div id="toolbar">
+            <div id="toolbar">
+                <select class="custom-select" id="appNameSelect" onchange="fetchLogs()">
+                    <option selected>Scegli un'app...</option>
+                    <!-- Le opzioni verranno generate dinamicamente -->
+                </select>
                 <button class="btn btn-primary" onclick="fetchLogs()">Aggiorna Log</button>
                 <i id="status-icon" class="fas fa-sync-alt" style="margin-left: 10px;"></i>
             </div>
+    
         
             <div id="container">
                 <div id="left-pane" class="console-logs log-container">
@@ -141,19 +147,45 @@
         
 
     <script>
+      const isAppNamesPopulated = false;
+      function populateAllowedApps(allowedApps){
+             if (isAppNamesPopulated){
+                return;
+             }
+             isAppNamesPopulated = true;
+            // Supponendo che allowedApps sia un array di stringhe
+            const appNameSelect = document.getElementById('appNameSelect');
+            
+            allowedApps.forEach(app => {
+                let option = new Option(app, app);
+                appNameSelect.add(option);
+            });
+      }
       async function fetchLogs() {
         try {
+            // Estrai i parametri di ricerca dall'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            let appName = urlParams.get('appName');
+            const secret = urlParams.get('secret');
+            
+            // Se appName non è nei parametri di ricerca, prendilo dalla select
+            if (!appName) {
+                appName = document.getElementById('appNameSelect').value;
+                if (appName === 'Scegli un\'app...') {
+                    return; // Non eseguire la fetch se non è stata selezionata un'app
+                }
+            }
+
+            const fetchUrl = new URL('/logs', window.location.href);
+            fetchUrl.searchParams.set('appName', appName);
+            fetchUrl.searchParams.set('secret', secret);
           // Aggiungi qui la logica per recuperare i log dalla console e i log di build
           // Ad esempio, una richiesta GET al tuo server Express
-          let {
-            logs: consoleLogs,
-            buildLogs,
-            isAppBuilding,
-          } = await fetch(location.href.replace("/?", "/logs?")).then((res) =>
-            res.json()
-          );
+          let { logs: consoleLogs, buildLogs, isAppBuilding } = await fetch(fetchUrl).then(res => res.json());
 
-          console.log({ consoleLogs, buildLogs, isAppBuilding });
+          console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps });
+
+          populateAllowedApps(allowedApps);
 
           buildLogs = buildLogs.lines.join("\n");
 
