@@ -34,7 +34,7 @@
           // Aggiungi qui la logica per recuperare i log dalla console e i log di build
           // Ad esempio, una richiesta GET al tuo server Express
           const {logs: consoleLogs, buildLogs, isAppBuilding} = await fetch(
-            location.href.replace("?", "/logs?")
+            location.href.replace("/?", "/logs?")
           ).then((res) => res.json());
     
           document.getElementById(
