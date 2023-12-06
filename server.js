@@ -19,19 +19,19 @@ app.get("/api", async (req, res) => {
     const secret = req.query.secret;
     if (!secret) {
      // return res.status(400).send('Il parametro "secret" è obbligatorio');
-      return res.status(403).send(JSON.stringify({error:'Il parametro "secret" è obbligatorio'}));
+      return res.status(400).send(JSON.stringify({error:'Il parametro "secret" è obbligatorio'}));
 
     }
     if (secret !== SECRTET) {
     //  return res.status(400).send('Il parametro "secret" non è valido');
-      return res.status(403).send(JSON.stringify({error:'Il parametro "secret" non è valido'}));
+      return res.status(400).send(JSON.stringify({error:'Il parametro "secret" non è valido'}));
     }
     const appName = req.query.appName;
     if (!appName) {
-      return res.status(403).send(JSON.stringify({error:'Il parametro "appName" è obbligatorio'}));
+      return res.status(400).send(JSON.stringify({error:'Il parametro "appName" è obbligatorio'}));
     }
     if (!allowedApps.includes(appName)) {
-      return res.status(403).send(JSON.stringify({error:'Il parametro "appName" non è valido'}));
+      return res.status(400).send(JSON.stringify({error:'Il parametro "appName" non è valido'}));
     }
     console.log("Recuperando i log da CapRover", appName);
     // Ottenere token da CapRover
