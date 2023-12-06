@@ -233,6 +233,12 @@
                 statusIcon.className = 'fas fa-check';
             }
 
+            const isBuildFailed = appData && appData.isBuildFailed;
+
+            if (isBuildFailed) {
+                statusIcon.className = 'fas fa-times';
+            }
+
             document.querySelector(".console-logs").scrollTop = document.querySelector(".console-logs").scrollHeight;
             document.querySelector(".build-logs").scrollTop = document.querySelector(".build-logs").scrollHeight;
           // Assicurati che i contenitori dei log abbiano un elemento interno <pre>
