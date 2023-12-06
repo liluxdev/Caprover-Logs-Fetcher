@@ -227,10 +227,12 @@
           populateAllowedApps(allowedApps);
 
           buildLogs = buildLogs.lines.join("\n");
-
-       
-          document.querySelector(".console-logs").innerHTML = `<pre>${consoleLogs}</pre>`;
-          document.querySelector(".build-logs").innerHTML = `<pre>${buildLogs}</pre>`;
+          if (document.querySelector(".console-logs:hover") === null){
+            document.querySelector(".console-logs").innerHTML = `<pre>${consoleLogs}</pre>`;
+          }
+          if (document.querySelector(".build-logs:hover") === null){
+            document.querySelector(".build-logs").innerHTML = `<pre>${buildLogs}</pre>`;
+          }
 
           const statusIcon = document.getElementById('status-icon');
             if (isAppBuilding) {
