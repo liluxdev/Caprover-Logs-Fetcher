@@ -59,11 +59,20 @@
         padding: 10px;
         color: #fafafa !important;
         overflow: hidden;
+        transition: color 0.5s ease-in-out;
       }
 
       .log-container.build-logs pre {
         color: orange !important;
       }
+
+        .log-container.console-logs:hover pre {
+            color: green !important;
+        }
+
+        .log-container.build-logs:hover pre {
+            color: green !important;
+        }
     </style>
     <style>
         body {
