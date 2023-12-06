@@ -92,10 +92,10 @@
             </div>
         
             <div id="container">
-                <div id="left-pane" class="log-container">
+                <div id="left-pane" class="console-logs log-container">
                     <div id="console-logs">Caricamento dei log della console...</div>
                 </div>
-                <div id="right-pane" class="log-container">
+                <div id="right-pane" class="build-logs log-container">
                     <div id="build-logs">Caricamento dei log di build...</div>
                 </div>
             </div>
@@ -156,6 +156,9 @@
             // Scroll automatico
             document.getElementById('console-logs').scrollTop = document.getElementById('console-logs').scrollHeight;
             document.getElementById('build-logs').scrollTop = document.getElementById('build-logs').scrollHeight;
+
+            document.querySelector(".console-logs").scrollTop = document.querySelector(".console-logs").scrollHeight;
+            document.querySelector(".build-logs").scrollTop = document.querySelector(".build-logs").scrollHeight;
 
         } catch (error) {
           console.error("Errore nel recupero dei log:", error);
