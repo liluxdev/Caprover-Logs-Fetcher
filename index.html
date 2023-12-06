@@ -136,7 +136,7 @@
             </script>
         
             <script>
-                $(function () {
+                function initSplitPane(){
                     $("#left-pane").resizable({
                         handles: 'e', // Ridimensionamento dal lato destro
                         resize: function(event, ui) {
@@ -146,6 +146,9 @@
                             $("#right-pane").css('flex', '1');
                         }
                     });
+                }
+                $(function () {
+                  initSplitPane();
                 });
             </script>
         </body>
@@ -189,6 +192,8 @@
 
             document.querySelector(".console-logs").scrollTop = document.querySelector(".console-logs").scrollHeight;
             document.querySelector(".build-logs").scrollTop = document.querySelector(".build-logs").scrollHeight;
+
+            initSplitPane();
 
         } catch (error) {
           console.error("Errore nel recupero dei log:", error);
