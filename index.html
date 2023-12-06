@@ -3,6 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
     <title>CapRover Logs</title>
     <style>
       body {
@@ -10,43 +24,68 @@
         padding: 0;
         display: flex;
         height: 100vh;
-        color: #fafafa;
       }
       .log-container {
         width: 50%;
         overflow-y: scroll;
         background-color: #666;
         padding: 10px;
+        color: #fafafa;
       }
     </style>
   </head>
   <body>
-    <div class="log-container" id="console-logs">
-      Caricamento dei log della console...
-    </div>
-    <div class="log-container" id="build-logs">
-      Caricamento dei log di build...
-    </div>
+    <body>
+        <div style="padding: 10px;">
+            <button class="btn btn-primary" onclick="fetchLogs()">Aggiorna Log</button>
+            <i id="status-icon" class="fas fa-sync-alt" style="margin-left: 10px;"></i>
+        </div>
+       
+        <div id="container">
+            <div class="log-container" id="console-logs">
+                Caricamento dei log della console...
+            </div>
+            <div class="log-container" id="build-logs">
+                Caricamento dei log di build...
+            </div>
+        </div>
+        
 
     <script>
       async function fetchLogs() {
         try {
           // Aggiungi qui la logica per recuperare i log dalla console e i log di build
           // Ad esempio, una richiesta GET al tuo server Express
-          let {logs: consoleLogs, buildLogs, isAppBuilding} = await fetch(
-            location.href.replace("/?", "/logs?")
-          ).then((res) => res.json());
+          let {
+            logs: consoleLogs,
+            buildLogs,
+            isAppBuilding,
+          } = await fetch(location.href.replace("/?", "/logs?")).then((res) =>
+            res.json()
+          );
 
-          console.log({consoleLogs, buildLogs, isAppBuilding});
+          console.log({ consoleLogs, buildLogs, isAppBuilding });
 
           buildLogs = buildLogs.lines.join("\n");
-    
+
           document.getElementById(
             "console-logs"
           ).innerHTML = `<pre>${consoleLogs}</pre>`;
           document.getElementById(
             "build-logs"
           ).innerHTML = `<pre>${buildLogs}</pre>`;
+
+          const statusIcon = document.getElementById('status-icon');
+            if (isAppBuilding) {
+                statusIcon.className = 'fas fa-cog fa-spin';
+            } else {
+                statusIcon.className = 'fas fa-check';
+            }
+
+            // Scroll automatico
+            document.getElementById('console-logs').scrollTop = document.getElementById('console-logs').scrollHeight;
+            document.getElementById('build-logs').scrollTop = document.getElementById('build-logs').scrollHeight;
+
         } catch (error) {
           console.error("Errore nel recupero dei log:", error);
         }
@@ -55,5 +94,22 @@
       // Chiamare fetchLogs al caricamento della pagina
       window.onload = fetchLogs;
     </script>
+    <style>
+        #container {
+            display: flex;
+            height: 90%;
+        }
+        .log-container {
+            flex: 1;
+            overflow-y: scroll;
+        }
+    </style>
+    
+    <script>
+        $(function () {
+            $("#container").resizable();
+        });
+    </script>
+    
   </body>
 </html>
