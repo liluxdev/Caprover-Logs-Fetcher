@@ -188,7 +188,7 @@
       window.bttRefreshLabel = 'Aggiorna';
       async function fetchLogs() {
         const oldBttRefresh = document.querySelector("#bttRefresh.standby")?.innerHTML;
-        if (bttRefreshLabel !== oldBttRefresh){
+        if (bttRefreshLabel !== oldBttRefresh && oldBttRefresh){
             bttRefreshLabel = oldBttRefresh;
             document.querySelector("#bttRefresh").innerHTML = "Aggiornando...";
             document.querySelector("#bttRefresh").classList.remove("standby");
