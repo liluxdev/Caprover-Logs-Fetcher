@@ -62,7 +62,7 @@ app.get("/api", async (req, res) => {
     console.log("buildLogsResponse", JSON.stringify(buildLogsResponse.data));
     const {data} = buildLogsResponse.data;
 
-    res.send(JSON.stringify({ isAppBuilding: data.isAppBuilding, logs, buildLogs: data.logs, appData: buildLogsResponse, allowedApps }));
+    res.send(JSON.stringify({ isAppBuilding: data.isAppBuilding, logs, buildLogs: data.logs, appData: data,allowedApps }));
   } catch (error) {
     console.error(error.message);
     res.status(500).send(JSON.stringify({error:"Errore nel recuperare i log: " + error.message}));
