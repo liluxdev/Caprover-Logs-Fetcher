@@ -241,7 +241,7 @@
           //  const oldHtmlConsole = document.querySelector(".console-logs").innerHTML.trim();
            // console.log({oldHtmlConsole, newLogs, equals: oldHtmlConsole === newLogs.trim()});
 
-            if ( oldConsole !== newLogs ){
+            if ( oldConsole=='' || oldConsole !== newLogs ){
                 console.warn("Console logs updated", {a:oldConsole, b:newLogs, equals: oldConsole === newLogs});
                 if (oldConsole==''|| document.querySelector(".console-logs:hover") === null){
                     document.querySelector(".console-logs").innerHTML = newLogs;
@@ -254,7 +254,7 @@
            // const oldHtmlBuild = document.querySelector(".build-logs").innerHTML.trim();
            // console.log({oldHtmlBuild, newLogs, equals: oldHtmlBuild === newBuildLogs.trim()});
 
-            if ( oldBuild !== newBuildLogs ){
+            if ( oldBuild=='' ||oldBuild !== newBuildLogs ){
                 if (oldBuild=='' || document.querySelector(".build-logs:hover") === null){
                     document.querySelector(".build-logs").innerHTML = newBuildLogs;
                     oldBuild = newBuildLogs;
