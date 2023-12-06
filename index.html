@@ -159,9 +159,15 @@
              isAppNamesPopulated = true;
             // Supponendo che allowedApps sia un array di stringhe
             const appNameSelect = document.getElementById('appNameSelect');
+
+            const urlParams = new URLSearchParams(window.location.search);
+            let appName = urlParams.get('appName');
             
             allowedApps.forEach(app => {
                 let option = new Option(app, app);
+                if (app===appName){
+                    option.selected = true;
+                }
                 appNameSelect.add(option);
             });
       }
