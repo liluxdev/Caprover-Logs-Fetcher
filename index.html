@@ -243,7 +243,7 @@
 
             if ( oldConsole !== newLogs ){
                 console.warn("Console logs updated", {a:oldConsole, b:newLogs, equals: oldConsole === newLogs});
-                if (document.querySelector(".console-logs:hover") === null){
+                if (oldConsole==''|| document.querySelector(".console-logs:hover") === null){
                     document.querySelector(".console-logs").innerHTML = newLogs;
                     oldConsole = newLogs;
                 }
@@ -255,7 +255,7 @@
            // console.log({oldHtmlBuild, newLogs, equals: oldHtmlBuild === newBuildLogs.trim()});
 
             if ( oldBuild !== newBuildLogs ){
-                if (document.querySelector(".build-logs:hover") === null){
+                if (oldBuild=='' || document.querySelector(".build-logs:hover") === null){
                     document.querySelector(".build-logs").innerHTML = newBuildLogs;
                     oldBuild = newBuildLogs;
                 }
