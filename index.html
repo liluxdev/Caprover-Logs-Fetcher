@@ -53,6 +53,7 @@
             color: #fafafa !important;
         }
         #left-pane, #right-pane {
+            flex: 1; /* Entrambi i pannelli prendono lo stesso spazio inizialmente */
             min-width: 10%; /* Imposta la larghezza iniziale */
             max-width: 100%;
             overflow-y: scroll;
@@ -62,13 +63,11 @@
         }
 
         #left-pane {
-            float: left;
-            height: 100%;
-            width: 50%;
+            resize: horizontal; /* Permette il ridimensionamento orizzontale */
+            overflow: auto;
         }
 
         #right-pane {
-            float: right;
             height: 100%;
         }
 
@@ -110,8 +109,13 @@
             <script>
                 $(function () {
                     $("#left-pane").resizable({
-                        handleSelector: ".splitter",
-                        resizeHeight: false
+                        handles: 'e', // Ridimensionamento dal lato destro
+                        resize: function(event, ui) {
+                            var currentWidth = ui.size.width;
+                            // Aggiorna la larghezza del left-pane e la flessibilità del right-pane
+                            $("#left-pane").css('flex', 'none').width(currentWidth);
+                            $("#right-pane").css('flex', '1');
+                        }
                     });
                 });
             </script>
@@ -164,10 +168,8 @@
     </script>
     <style>
         #container {
+            display: flex;
             height: 90%;
-        }
-        .log-container {
-            overflow-y: scroll;
         }
     </style>
     
