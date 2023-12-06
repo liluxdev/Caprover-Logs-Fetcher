@@ -46,14 +46,14 @@ app.get("/logs", async (req, res) => {
 
     // Get build logs from CapRover API
     const buildLogsResponse = await axios.get(
-      `${caproverUrl}api/v2/user/apps/appData/${appName}/buildLogs`,
+      `${caproverUrl}api/v2/user/apps/appData/${appName}`,
       {
         headers: { "x-captain-auth": token },
         encoding: "utf8",
       }
     );
     console.log("buildLogsResponse", JSON.stringify(buildLogsResponse.data));
-    const buildLogs = buildLogsResponse.data.data.buildLogs;
+    const {logs:buildLogs, isAppBuilding} = buildLogsResponse.data;
 
     res.send(JSON.stringify({ logs, buildLogs }));
   } catch (error) {
