@@ -271,7 +271,7 @@
         });
     } catch (error) {
         console.error("Errore nel recupero dei log:", error);
-        toastr.error('Errore nel recupero dei log', 'Errore', {
+        toastr.error('Errore nel recupero dei log'+ JSON.stringify(error), 'Errore', {
             closeButton: true,
             progressBar: true,
             positionClass: 'toast-bottom-right',
