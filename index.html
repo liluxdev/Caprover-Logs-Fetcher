@@ -227,12 +227,24 @@
           populateAllowedApps(allowedApps);
 
           buildLogs = buildLogs.lines.join("\n");
-          if (document.querySelector(".console-logs:hover") === null){
-            document.querySelector(".console-logs").innerHTML = `<pre>${consoleLogs}</pre>`;
-          }
-          if (document.querySelector(".build-logs:hover") === null){
-            document.querySelector(".build-logs").innerHTML = `<pre>${buildLogs}</pre>`;
-          }
+
+          let consoleLogsUpdated, buildLogsUpdated = false;
+        
+            const newLogs = `<pre>${consoleLogs}</pre>`;
+            if ( document.querySelector(".console-logs").innerHTML !== newLogs ){
+                if (document.querySelector(".console-logs:hover") === null){
+                    document.querySelector(".console-logs").innerHTML = newLogs;
+                }
+                consoleLogsUpdated = true;
+            }
+          
+            const newBuildLogs = `<pre>${buildLogs}</pre>`;
+            if ( document.querySelector(".build-logs").innerHTML !== newBuildLogs ){
+                if (document.querySelector(".build-logs:hover") === null){
+                    document.querySelector(".build-logs").innerHTML = newBuildLogs;
+                }
+                buildLogsUpdated = true;
+            }
 
           const statusIcon = document.getElementById('status-icon');
             if (isAppBuilding) {
@@ -280,10 +292,10 @@
             if (consoleLogsContainer && buildLogsContainer) {
                 const consoleScrollTarget = consoleLogsContainer.scrollHeight - consoleLogsContainer.clientHeight;
                 const buildScrollTarget = buildLogsContainer.scrollHeight - buildLogsContainer.clientHeight;
-                if (document.querySelector(".console-logs:hover") === null){
+                if (consoleLogsUpdated && document.querySelector(".console-logs:hover") === null){
                     smoothScrollTo(consoleLogsContainer, consoleScrollTarget);
                 }
-                if (document.querySelector(".build-logs:hover") === null){
+                if (buildLogsUpdated && document.querySelector(".build-logs:hover") === null){
                     smoothScrollTo(buildLogsContainer, buildScrollTarget);
                 }
             }
@@ -291,12 +303,22 @@
  // initSplitPane();
 
           // Mostra un messaggio toast dopo l'aggiornamento dei log
-          toastr.success('Log aggiornati', 'Successo', {
+          if (consoleLogsUpdated){
+            toastr.success('Ci sono nuovi log in console', 'Aggiornamento', {
             closeButton: true,
             progressBar: true,
             positionClass: 'toast-bottom-right',
             timeOut: 3000
         });
+    }
+        if (buildLogsUpdated){
+            toastr.warn('Ci sono nuovi log di build', 'Build', {
+            closeButton: true,
+            progressBar: true,
+            positionClass: 'toast-bottom-right',
+            timeOut: 3000
+        });
+    }
         if (isAppBuilding || enabledAutoRefresh){
             setTimeout(()=>fetchLogs(), 5000);
         }
