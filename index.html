@@ -56,6 +56,35 @@
         .log-container pre{
             color: #fafafa !important;
         }
+        #left-pane, #right-pane {
+            width: 50%; /* Imposta la larghezza iniziale */
+            overflow-y: scroll;
+            background-color: #666;
+            color: #fafafa;
+            padding: 10px;
+        }
+
+        #left-pane {
+            float: left;
+            height: 100%;
+        }
+
+        #right-pane {
+            float: right;
+            height: 100%;
+        }
+
+        /* Stile per la barra di ridimensionamento */
+        .ui-resizable-handle {
+            background-color: #333;
+            width: 10px;
+            cursor: ew-resize;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -5px;
+        }
+
     </style>    
   </head>
   <body>
@@ -67,9 +96,14 @@
             </div>
         
             <div id="container">
-                <div class="log-container" id="console-logs">Caricamento dei log della console...</div>
-                <div class="log-container" id="build-logs">Caricamento dei log di build...</div>
+                <div id="left-pane" class="log-container">
+                    <div id="console-logs">Caricamento dei log della console...</div>
+                </div>
+                <div id="right-pane" class="log-container">
+                    <div id="build-logs">Caricamento dei log di build...</div>
+                </div>
             </div>
+            
         
             <script>
                 // Script per fetchLogs
@@ -77,8 +111,9 @@
         
             <script>
                 $(function () {
-                    $("#container").resizable({
-                        handles: 'e, w' // Aggiunge maniglie di ridimensionamento
+                    $("#left-pane").resizable({
+                        handleSelector: ".splitter",
+                        resizeHeight: false
                     });
                 });
             </script>
