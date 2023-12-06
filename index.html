@@ -220,10 +220,23 @@
 
             document.querySelector(".console-logs").scrollTop = document.querySelector(".console-logs").scrollHeight;
             document.querySelector(".build-logs").scrollTop = document.querySelector(".build-logs").scrollHeight;
-            document.querySelector(".console-logs pre").scrollTop = document.querySelector(".console-logs pre").scrollHeight;
-            document.querySelector(".build-logs pre").scrollTop = document.querySelector(".build-logs pre").scrollHeight;
+          // Assicurati che i contenitori dei log abbiano un elemento interno <pre>
+            const consoleLogContainer = document.querySelector(".console-logs pre");
+            const buildLogContainer = document.querySelector(".build-logs pre");
 
-           // initSplitPane();
+            if (consoleLogContainer && buildLogContainer) {
+                // Crea un nuovo elemento alla fine di ogni contenitore dei log
+                const consoleEndMarker = document.createElement("div");
+                const buildEndMarker = document.createElement("div");
+                
+                consoleLogContainer.appendChild(consoleEndMarker);
+                buildLogContainer.appendChild(buildEndMarker);
+
+                // Esegui lo smooth scroll verso il nuovo elemento
+                consoleEndMarker.scrollIntoView({ behavior: 'smooth' });
+                buildEndMarker.scrollIntoView({ behavior: 'smooth' });
+            }
+ // initSplitPane();
 
           // Mostra un messaggio toast dopo l'aggiornamento dei log
           toastr.success('Log aggiornati', 'Successo', {
