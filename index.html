@@ -231,7 +231,10 @@
           let consoleLogsUpdated, buildLogsUpdated = false;
         
             const newLogs = `<pre>${consoleLogs}</pre>`;
-            if ( document.querySelector(".console-logs").innerHTML !== newLogs ){
+            const oldHtmlConsole = document.querySelector(".console-logs").innerHTML.trim();
+            console.log({oldHtml, newLogs, equals: oldHtmlConsole === newLogs.trim()});
+
+            if ( oldHtmlConsole !== newLogs.trim() ){
                 if (document.querySelector(".console-logs:hover") === null){
                     document.querySelector(".console-logs").innerHTML = newLogs;
                 }
@@ -239,7 +242,10 @@
             }
           
             const newBuildLogs = `<pre>${buildLogs}</pre>`;
-            if ( document.querySelector(".build-logs").innerHTML !== newBuildLogs ){
+            const oldHtmlBuild = document.querySelector(".build-logs").innerHTML.trim();
+            console.log({oldHtml, newLogs, equals: oldHtmlBuild === newBuildLogs.trim()});
+
+            if ( oldHtmlBuild !== newBuildLogs.trim() ){
                 if (document.querySelector(".build-logs:hover") === null){
                     document.querySelector(".build-logs").innerHTML = newBuildLogs;
                 }
