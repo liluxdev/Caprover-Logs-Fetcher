@@ -31,22 +31,57 @@
         color: #fafafa;
       }
     </style>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Imposta la direzione del layout principale */
+            height: 100vh;
+        }
+        #toolbar {
+            padding: 10px;
+            background-color: #f8f9fa; /* Colore di sfondo della barra degli strumenti */
+        }
+        #container {
+            display: flex;
+            flex-grow: 1; /* Occupa tutto lo spazio rimanente */
+        }
+        .log-container {
+            flex: 1; /* Ogni contenitore dei log occuperà il 50% dello spazio */
+            overflow-y: scroll;
+            background-color: #666;
+            color: #fafafa;
+            padding: 10px;
+        }
+    </style>    
   </head>
   <body>
     <body>
-        <div style="padding: 10px;">
-            <button class="btn btn-primary" onclick="fetchLogs()">Aggiorna Log</button>
-            <i id="status-icon" class="fas fa-sync-alt" style="margin-left: 10px;"></i>
-        </div>
-       
-        <div id="container">
-            <div class="log-container" id="console-logs">
-                Caricamento dei log della console...
+        <body>
+            <div id="toolbar">
+                <button class="btn btn-primary" onclick="fetchLogs()">Aggiorna Log</button>
+                <i id="status-icon" class="fas fa-sync-alt" style="margin-left: 10px;"></i>
             </div>
-            <div class="log-container" id="build-logs">
-                Caricamento dei log di build...
+        
+            <div id="container">
+                <div class="log-container" id="console-logs">Caricamento dei log della console...</div>
+                <div class="log-container" id="build-logs">Caricamento dei log di build...</div>
             </div>
-        </div>
+        
+            <script>
+                // Script per fetchLogs
+            </script>
+        
+            <script>
+                $(function () {
+                    $("#container").resizable({
+                        handles: 'e, w' // Aggiunge maniglie di ridimensionamento
+                    });
+                });
+            </script>
+        </body>
+        
         
 
     <script>
