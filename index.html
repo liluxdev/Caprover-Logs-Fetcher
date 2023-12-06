@@ -107,11 +107,15 @@
             cursor: ew-resize;
         }
 
+        .custom-select{
+            width: auto;
+        }
+
     </style>    
   </head>
   <body>
             <div id="toolbar">
-                <select class="x-custom-select" id="appNameSelect" onchange="fetchLogs()">
+                <select class="custom-select" id="appNameSelect" onchange="fetchLogs()">
                     <option selected>Scegli un'app...</option>
                     <!-- Le opzioni verranno generate dinamicamente -->
                 </select>
