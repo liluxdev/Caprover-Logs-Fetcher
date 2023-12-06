@@ -51,14 +51,16 @@
         display: flex;
         height: 100vh;
       }
-      .log-container {
-        background-color: #333;
+      .log-container{
+        background-color: #333 !important;
+      }
+      .log-container pre {
         padding: 10px;
         color: #fafafa !important;
         overflow: hidden;
       }
 
-      .log-container.build-logs {
+      .log-container.build-logs pre {
         color: orange !important;
       }
     </style>
@@ -92,7 +94,7 @@
             /*flex: 1; /* Entrambi i pannelli prendono lo stesso spazio inizialmente */
             min-width: 10%; /* Imposta la larghezza iniziale */
             max-width: 100%;
-            background-color: #666;
+            background-color: #333;
             color: #fafafa;
             padding-top: 10px;
             padding-bottom: 10px;
