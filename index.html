@@ -53,7 +53,8 @@
             color: #fafafa !important;
         }
         #left-pane, #right-pane {
-            width: 50%; /* Imposta la larghezza iniziale */
+            min-width: 10%; /* Imposta la larghezza iniziale */
+            max-width: 100%;
             overflow-y: scroll;
             background-color: #666;
             color: #fafafa;
@@ -63,6 +64,7 @@
         #left-pane {
             float: left;
             height: 100%;
+            width: 50%;
         }
 
         #right-pane {
