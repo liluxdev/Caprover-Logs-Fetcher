@@ -203,7 +203,7 @@
             fetchUrl.searchParams.set('appName', appName);
             fetchUrl.searchParams.set('secret', secret);
 
-            const selfUrl = new URL('/api', window.location.href);
+            const selfUrl = new URL('/', window.location.href);
             selfUrl.searchParams.set('appName', appName);
             selfUrl.searchParams.set('secret', secret);
             history.pushState({}, null, selfUrl);
