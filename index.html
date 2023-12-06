@@ -33,11 +33,13 @@
         try {
           // Aggiungi qui la logica per recuperare i log dalla console e i log di build
           // Ad esempio, una richiesta GET al tuo server Express
-          const {logs: consoleLogs, buildLogs, isAppBuilding} = await fetch(
+          let {logs: consoleLogs, buildLogs, isAppBuilding} = await fetch(
             location.href.replace("/?", "/logs?")
           ).then((res) => res.json());
 
           console.log({consoleLogs, buildLogs, isAppBuilding});
+
+          buildLogs = buildLogs.lines.join("\n");
     
           document.getElementById(
             "console-logs"
