@@ -117,7 +117,7 @@
   <body>
             <div id="toolbar">
                 <select class="custom-select" id="appNameSelect" onchange="fetchLogs()">
-                    <option selected>Scegli un'app...</option>
+                    <option value="0" selected>Scegli un'app...</option>
                     <!-- Le opzioni verranno generate dinamicamente -->
                 </select>
                 <button class="btn btn-primary" onclick="fetchLogs()">Aggiorna Log</button>
@@ -182,7 +182,7 @@
             // Se appName non è nei parametri di ricerca, prendilo dalla select
             const appNameSelected = document.getElementById('appNameSelect').value;
             if (appNameSelected){
-                if (appName === 'Scegli un\'app...') {
+                if (appName === '0') {
                     return; // Non eseguire la fetch se non è stata selezionata un'app
                 }
                 appName = appNameSelected;
