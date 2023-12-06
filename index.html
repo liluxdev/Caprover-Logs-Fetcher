@@ -236,6 +236,7 @@
            // console.log({oldHtmlConsole, newLogs, equals: oldHtmlConsole === newLogs.trim()});
 
             if ( oldConsole !== newLogs ){
+                console.warn("Console logs updated", {oldConsole, newLogs, equals: oldConsole === newLogs});
                 if (document.querySelector(".console-logs:hover") === null){
                     document.querySelector(".console-logs").innerHTML = newLogs;
                     oldConsole = newLogs;
