@@ -288,8 +288,9 @@
             closeButton: true,
             progressBar: true,
             positionClass: 'toast-bottom-right',
-            timeOut: 5000
+            timeOut: 3000
         });
+        setTimeout(()=>fetchLogs(), 5000);
         } catch (error) {
             console.error("Errore nel recupero dei log:", error);
             toastr.error('Errore nel recupero dei log'+ error, 'Errore', {
