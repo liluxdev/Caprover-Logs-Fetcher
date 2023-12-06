@@ -202,6 +202,11 @@
             const fetchUrl = new URL('/api', window.location.href);
             fetchUrl.searchParams.set('appName', appName);
             fetchUrl.searchParams.set('secret', secret);
+
+            const selfUrl = new URL('/api', window.location.href);
+            selfUrl.searchParams.set('appName', appName);
+            selfUrl.searchParams.set('secret', secret);
+            history.pushState({}, null, selfUrl);
           // Aggiungi qui la logica per recuperare i log dalla console e i log di build
           // Ad esempio, una richiesta GET al tuo server Express
          const resp = await fetch(fetchUrl).then(res => res.json());
