@@ -174,12 +174,9 @@
 
           buildLogs = buildLogs.lines.join("\n");
 
-          document.getElementById(
-            "console-logs"
-          ).innerHTML = `<pre>${consoleLogs}</pre>`;
-          document.getElementById(
-            "build-logs"
-          ).innerHTML = `<pre>${buildLogs}</pre>`;
+       
+          document.querySelector(".console-logs").innerHTML = `<pre>${consoleLogs}</pre>`;
+          document.querySelector(".build-logs").innerHTML = `<pre>${buildLogs}</pre>`;
 
           const statusIcon = document.getElementById('status-icon');
             if (isAppBuilding) {
