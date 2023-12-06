@@ -176,7 +176,7 @@
                 }
             }
 
-            const fetchUrl = new URL('/logs', window.location.href);
+            const fetchUrl = new URL('/api', window.location.href);
             fetchUrl.searchParams.set('appName', appName);
             fetchUrl.searchParams.set('secret', secret);
           // Aggiungi qui la logica per recuperare i log dalla console e i log di build

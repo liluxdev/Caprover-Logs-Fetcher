@@ -9,7 +9,11 @@ const SECRTET = process.env.SECRET;
 
 app.use(express.static("."));
 
-app.get("/logs", async (req, res) => {
+app.get("logs", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+}
+
+app.get("/api", async (req, res) => {
   try {
     //check secret
     const secret = req.query.secret;
