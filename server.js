@@ -8,6 +8,8 @@ const caproverPassword = process.env.CAPROVER_PASSWORD;
 const allowedApps = process.env.ALLOWED_APPS.split(',');
 const SECRTET = process.env.SECRET;
 
+app.use(express.static('.'));
+
 app.get('/logs', async (req, res) => {
   try {
     //check secret
@@ -35,13 +37,32 @@ app.get('/logs', async (req, res) => {
     // Recupera i log usando l'API di CapRover
     const logsResponse = await axios.get(`${caproverUrl}api/v2/user/apps/appData/${appName}/logs`, {
       headers: { 'x-captain-auth': token },
-      //params: { appName }
       encoding: 'utf8'
     });
     console.log("logResponse",JSON.stringify(logsResponse.data));
     const logs = logsResponse.data.data.logs;
+
+    // Get build logs from CapRover API
+    const buildLogsResponse = await axios.get(`${caproverUrl}api/v2/user/apps/appData/${appName}/build-logs`, {
+      headers: { 'x-captain-auth': token },
+      encoding: 'utf8'
+    });
+    console.log("buildLogsResponse", JSON.stringify(buildLogsResponse.data));
+    const buildLogs = buildLogsResponse.data.data.buildLogs;
+
+    res.send(JSON.stringify({ logs, buildLogs }));
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Errore nel recuperare i log: ' + error.message);
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server in ascolto sulla porta ${port}`);
+});
     
-    res.send(`<pre>${logs}</pre>`);
+    
+    res.send(JSON.stringify({logs, buildLogs}));
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Errore nel recuperare i log: ' + error.message);

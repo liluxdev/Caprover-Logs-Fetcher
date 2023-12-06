@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CapRover Logs</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        height: 100vh;
+        color: #fafafa;
+      }
+      .log-container {
+        width: 50%;
+        overflow-y: scroll;
+        background-color: 666;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="log-container" id="console-logs">
+      Caricamento dei log della console...
+    </div>
+    <div class="log-container" id="build-logs">
+      Caricamento dei log di build...
+    </div>
+
+    <script>
+      async function fetchLogs() {
+        try {
+          // Aggiungi qui la logica per recuperare i log dalla console e i log di build
+          // Ad esempio, una richiesta GET al tuo server Express
+          const {consoleLogs, buildLogs} = await fetch(
+            location.href + "/logs"
+          ).then((res) => res.json());
+    
+          document.getElementById(
+            "console-logs"
+          ).innerHTML = `<pre>${consoleLogs}</pre>`;
+          document.getElementById(
+            "build-logs"
+          ).innerHTML = `<pre>${buildLogs}</pre>`;
+        } catch (error) {
+          console.error("Errore nel recupero dei log:", error);
+        }
+      }
+
+      // Chiamare fetchLogs al caricamento della pagina
+      window.onload = fetchLogs;
+    </script>
+  </body>
+</html>

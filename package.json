@@ -5,7 +5,8 @@
   "description": "Recupera i log da CapRover",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "zip": "zip -r caprover-logs-fetcher.zip . -x \"*.git*\" \"*node_modules*\""
   },
   "dependencies": {
     "axios": "^0.21.1",
