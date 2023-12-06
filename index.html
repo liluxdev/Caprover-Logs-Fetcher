@@ -51,6 +51,7 @@
         background-color: #666;
         padding: 10px;
         color: #fafafa;
+        overflow: hidden;
       }
     </style>
     <style>
@@ -213,9 +214,10 @@
                 statusIcon.className = 'fas fa-check';
             }
 
-
-            document.querySelector(".console-logs pre").scrollTop = document.querySelector(".console-logs").scrollHeight;
-            document.querySelector(".build-logs pre").scrollTop = document.querySelector(".build-logs").scrollHeight;
+            document.querySelector(".console-logs").scrollTop = document.querySelector(".console-logs").scrollHeight;
+            document.querySelector(".build-logs").scrollTop = document.querySelector(".build-logs").scrollHeight;
+            document.querySelector(".console-logs pre").scrollTop = document.querySelector(".console-logs pre").scrollHeight;
+            document.querySelector(".build-logs pre").scrollTop = document.querySelector(".build-logs pre").scrollHeight;
 
            // initSplitPane();
 
