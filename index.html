@@ -7,12 +7,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/split.js@1.5.11/dist/split.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
@@ -132,25 +127,17 @@
             </div>
             
         
-            <script>
-                // Script per fetchLogs
-            </script>
         
             <script>
-                function initSplitPane(){
-                    $("#left-pane").resizable({
-                        handles: 'e', // Ridimensionamento dal lato destro
-                        resize: function(event, ui) {
-                            var currentWidth = ui.size.width;
-                            // Aggiorna la larghezza del left-pane e la flessibilità del right-pane
-                            $("#left-pane").css('flex', 'none').width(currentWidth);
-                            $("#right-pane").css('flex', '1');
-                        }
-                    });
-                }
-                $(function () {
-                  initSplitPane();
-                });
+          document.addEventListener('DOMContentLoaded', function () {
+            Split(['#left-pane', '#right-pane'], {
+                sizes: [50, 50], // Imposta le dimensioni iniziali dei pannelli in percentuale
+                minSize: 100,    // Imposta la dimensione minima di ogni pannello
+                gutterSize: 8,   // Imposta la larghezza della gutter (barra di separazione)
+                cursor: 'col-resize' // Stile del cursore quando si è sopra la gutter
+            });
+        });
+
             </script>
         </body>
         
@@ -202,6 +189,10 @@
         #container {
             display: flex;
             height: calc(100% - 58px);
+        }
+
+        #left-pane, #right-pane {
+            overflow-y: auto; /* Aggiungi scrollbar se necessario */
         }
     </style>
     
