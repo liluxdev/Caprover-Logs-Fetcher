@@ -221,21 +221,40 @@
             document.querySelector(".console-logs").scrollTop = document.querySelector(".console-logs").scrollHeight;
             document.querySelector(".build-logs").scrollTop = document.querySelector(".build-logs").scrollHeight;
           // Assicurati che i contenitori dei log abbiano un elemento interno <pre>
-            const consoleLogContainer = document.querySelector(".console-logs pre");
-            const buildLogContainer = document.querySelector(".build-logs pre");
+            function smoothScrollTo(element, target) {
+                const startPosition = element.scrollTop;
+                const distance = target - startPosition;
+                const duration = 500; // Durata dello scroll in millisecondi
+                let startTime = null;
 
-            if (consoleLogContainer && buildLogContainer) {
-                // Crea un nuovo elemento alla fine di ogni contenitore dei log
-                const consoleEndMarker = document.createElement("div");
-                const buildEndMarker = document.createElement("div");
-                
-                consoleLogContainer.appendChild(consoleEndMarker);
-                buildLogContainer.appendChild(buildEndMarker);
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const nextScrollPosition = ease(timeElapsed, startPosition, distance, duration);
+                    element.scrollTop = nextScrollPosition;
+                    if (timeElapsed < duration) requestAnimationFrame(animation);
+                }
 
-                // Esegui lo smooth scroll verso il nuovo elemento
-                consoleEndMarker.scrollIntoView({ behavior: 'smooth' });
-                buildEndMarker.scrollIntoView({ behavior: 'smooth' });
+                function ease(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                }
+
+                requestAnimationFrame(animation);
             }
+
+            const consoleLogsContainer = document.querySelector(".console-logs");
+            const buildLogsContainer = document.querySelector(".build-logs");
+
+            if (consoleLogsContainer && buildLogsContainer) {
+                const consoleScrollTarget = consoleLogsContainer.scrollHeight - consoleLogsContainer.clientHeight;
+                const buildScrollTarget = buildLogsContainer.scrollHeight - buildLogsContainer.clientHeight;
+                smoothScrollTo(consoleLogsContainer, consoleScrollTarget);
+                smoothScrollTo(buildLogsContainer, buildScrollTarget);
+            }
+
  // initSplitPane();
 
           // Mostra un messaggio toast dopo l'aggiornamento dei log
