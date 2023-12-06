@@ -204,8 +204,18 @@
             fetchUrl.searchParams.set('secret', secret);
           // Aggiungi qui la logica per recuperare i log dalla console e i log di build
           // Ad esempio, una richiesta GET al tuo server Express
-          let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps } = await fetch(fetchUrl).then(res => res.json());
-
+         const resp = await fetch(fetchUrl).then(res => res.json());
+         let {error} = resp;
+         if (error){
+            toastr.error(error, 'Errore', {
+                closeButton: true,
+                progressBar: true,
+                positionClass: 'toast-bottom-right',
+                timeOut: 5000
+            });
+            return;
+         }
+         let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps } = resp;
           console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps });
 
           populateAllowedApps(allowedApps);
