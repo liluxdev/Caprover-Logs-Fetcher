@@ -194,6 +194,7 @@
                 positionClass: 'toast-bottom-right',
                 timeOut: 3000
             });
+            setTimeout(()=>document.querySelector("#bttRefresh").classList.add("standby"), 3000);
             return;
         }
             document.querySelector("#bttRefresh").innerHTML = "Aggiornando...";
