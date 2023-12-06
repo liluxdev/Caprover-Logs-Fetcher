@@ -243,10 +243,10 @@
 
             if ( oldConsole=='' || oldConsole !== newLogs ){
                 console.warn("Console logs updated", {a:oldConsole, b:newLogs, equals: oldConsole === newLogs});
-                oldConsole = newLogs;
                 if (oldConsole==''|| document.querySelector(".console-logs:hover") === null){
                     document.querySelector(".console-logs").innerHTML = newLogs;
                 }
+                oldConsole = newLogs;
                 consoleLogsUpdated = true;
             }
           
@@ -259,6 +259,7 @@
                 if (oldBuild=='' || document.querySelector(".build-logs:hover") === null){
                     document.querySelector(".build-logs").innerHTML = newBuildLogs;
                 }
+                oldConsole = newLogs;
                 buildLogsUpdated = true;
             }
 
