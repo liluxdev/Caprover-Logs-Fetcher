@@ -182,10 +182,9 @@
             // Se appName non è nei parametri di ricerca, prendilo dalla select
             const appNameSelected = document.getElementById('appNameSelect').value;
             if (appNameSelected){
-                if (appNameSelected === '0') {
-                    return; // Non eseguire la fetch se non è stata selezionata un'app
+                if (appNameSelected !== '0') {
+                    appName = appNameSelected;
                 }
-                appName = appNameSelected;
             }
                
             
