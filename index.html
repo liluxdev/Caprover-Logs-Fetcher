@@ -181,7 +181,7 @@
             fetchUrl.searchParams.set('secret', secret);
           // Aggiungi qui la logica per recuperare i log dalla console e i log di build
           // Ad esempio, una richiesta GET al tuo server Express
-          let { logs: consoleLogs, buildLogs, isAppBuilding } = await fetch(fetchUrl).then(res => res.json());
+          let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps } = await fetch(fetchUrl).then(res => res.json());
 
           console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps });
 
