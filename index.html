@@ -130,7 +130,7 @@
                     <option value="0" selected>Scegli un'app...</option>
                     <!-- Le opzioni verranno generate dinamicamente -->
                 </select>
-                <button class="btn btn-primary" onclick="fetchLogs()">Aggiorna Log</button>
+                <button id="bttRefresh" class="btn btn-primary" onclick="fetchLogs()">Aggiorna Log</button>
                 <i id="status-icon" class="fas fa-sync-alt" style="margin-left: 10px;"></i>
             </div>
     
@@ -186,6 +186,8 @@
             });
       }
       async function fetchLogs() {
+        const oldBttRefresh = document.querySelector("#bttRefresh").innerHTML;
+        document.querySelector("#bttRefresh").innerHTML = "Aggiornando...";
         try {
             // Estrai i parametri di ricerca dall'URL
             const urlParams = new URLSearchParams(window.location.search);
@@ -342,6 +344,7 @@
                 timeOut: 5000
             });
         }
+        document.querySelector("#bttRefresh").innerHTML = oldBttRefresh;
       }
 
       // Chiamare fetchLogs al caricamento della pagina
