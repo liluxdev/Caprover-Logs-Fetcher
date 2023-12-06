@@ -332,9 +332,7 @@
             timeOut: 3000
         });
     }
-        if (isAppBuilding || enabledAutoRefresh){
-            setTimeout(()=>fetchLogs(), 5000);
-        }
+      
         } catch (error) {
             console.error("Errore nel recupero dei log:", error);
             toastr.error('Errore nel recupero dei log'+ error, 'Errore', {
@@ -349,6 +347,10 @@
 
       // Chiamare fetchLogs al caricamento della pagina
       window.onload = fetchLogs;
+
+      if (enabledAutoRefresh){
+            setInterval(()=>fetchLogs(), 5000);
+      }
     </script>
     <style>
         #container {
