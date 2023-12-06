@@ -245,8 +245,8 @@
                 requestAnimationFrame(animation);
             }
 
-            const consoleLogsContainer = document.querySelector(".console-logs");
-            const buildLogsContainer = document.querySelector(".build-logs");
+            const consoleLogsContainer = document.querySelector(".console-logs pre");
+            const buildLogsContainer = document.querySelector(".build-logs pre");
 
             if (consoleLogsContainer && buildLogsContainer) {
                 const consoleScrollTarget = consoleLogsContainer.scrollHeight - consoleLogsContainer.clientHeight;
