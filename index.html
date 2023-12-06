@@ -215,8 +215,8 @@
             });
             return;
          }
-         let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps } = resp;
-          console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps });
+         let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps, appData } = resp;
+          console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps, appData });
 
           populateAllowedApps(allowedApps);
 
