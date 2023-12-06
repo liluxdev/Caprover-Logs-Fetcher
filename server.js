@@ -53,7 +53,7 @@ app.get("/logs", async (req, res) => {
       }
     );
     console.log("buildLogsResponse", JSON.stringify(buildLogsResponse.data));
-    const {logs:buildLogs, isAppBuilding} = buildLogsResponse.data;
+    const {logs:buildLogs, isAppBuilding} = buildLogsResponse.data.data;
 
     res.send(JSON.stringify({ isAppBuilding, logs, buildLogs }));
   } catch (error) {
