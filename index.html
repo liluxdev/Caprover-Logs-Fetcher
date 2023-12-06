@@ -125,10 +125,10 @@
         
             <div id="container">
                 <div id="left-pane" class="console-logs log-container">
-                    <div id="console-logs">Caricamento dei log della console...</div>
+                    Caricamento dei log della console...
                 </div>
                 <div id="right-pane" class="build-logs log-container">
-                    <div id="build-logs">Caricamento dei log di build...</div>
+                    Caricamento dei log di build...
                 </div>
             </div>
             
@@ -188,9 +188,6 @@
                 statusIcon.className = 'fas fa-check';
             }
 
-            // Scroll automatico
-            document.getElementById('console-logs').scrollTop = document.getElementById('console-logs').scrollHeight;
-            document.getElementById('build-logs').scrollTop = document.getElementById('build-logs').scrollHeight;
 
             document.querySelector(".console-logs").scrollTop = document.querySelector(".console-logs").scrollHeight;
             document.querySelector(".build-logs").scrollTop = document.querySelector(".build-logs").scrollHeight;
