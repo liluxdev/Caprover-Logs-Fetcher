@@ -162,9 +162,10 @@
         
 
     <script>
-      let isAppNamesPopulated = false;
-      let enabledAutoRefresh = true;
-      let oldConsole = '' , oldBuild = '';
+      window.isAppNamesPopulated = false;
+      window.enabledAutoRefresh = true;
+      window.oldConsole = '';
+      window.oldBuild = '';
       function populateAllowedApps(allowedApps){
              if (isAppNamesPopulated){
                 return;
