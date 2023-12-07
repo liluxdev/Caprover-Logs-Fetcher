@@ -97,14 +97,9 @@ async function fetchLogs() {
     }
     let {
       logs: consoleLogs,
-      buildLogs,
-      isAppBuilding,
-      allowedApps,
-      isBuildFailed,
-      originalLogLen,
-      responseLogLen,
+      buildLogs, isAppBuilding, isBuildFailed, allowedApps, appUrl, appDefinition
     } = resp;
-    console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps, appUrl });
+    console.log({ consoleLogs, buildLogs, isAppBuilding, isBuildFailed, allowedApps, appUrl, appDefinition });
 
     function hexStringToByte(str) {
       if (!str) {
