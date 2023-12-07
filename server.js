@@ -68,7 +68,6 @@ app.get("/api", async (req, res) => {
        appData: data,
        allowedApps 
     };
-    I
     console.log("sending response", JSON.stringify(response));
     res.send(JSON.stringify(response));
   } catch (error) {
