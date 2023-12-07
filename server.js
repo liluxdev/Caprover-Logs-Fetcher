@@ -94,7 +94,7 @@ app.get("/api", async (req, res) => {
     const response = {
       isAppBuilding: data.isAppBuilding,
       logs,
-      buildLogs: data.logs,
+      buildLogs: "test",//data.logs,
       appData: data,
       allowedApps,
     };
