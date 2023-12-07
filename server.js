@@ -107,6 +107,15 @@ router.get("/api", async (ctx) => {
     );
     const { data } = buildLogsResponse.data;
 
+
+    const appDefinitions = await axios.get(
+      `${caproverUrl}api/v2/user/${appName}/appDefinitions`,
+      {
+        headers: { "x-captain-auth": token },
+        timeout: 2000,
+      }
+    );
+
     ctx.body = {
       isAppBuilding: data.isAppBuilding,
       logs: logs,
@@ -116,6 +125,7 @@ router.get("/api", async (ctx) => {
       isBuildFailed: data.isBuildFailed,
       originalLogLen,
       responseLogLen,
+      appDefinitions: appDefinitions.data.data,
     };
   } catch (error) {
     console.trace(error);
