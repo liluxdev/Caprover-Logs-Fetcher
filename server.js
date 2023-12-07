@@ -93,7 +93,7 @@ app.get("/api", async (req, res) => {
     const { data } = buildLogsResponse.data;
     const response = {
       isAppBuilding: data.isAppBuilding,
-      logs,
+      logs: logs.split("\n").slice(-27).join("\n"),
       buildLogs: data.logs.lines.slice(-27).join("\n"),
      // appData: data,
       allowedApps,
