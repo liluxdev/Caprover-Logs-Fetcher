@@ -249,6 +249,8 @@ async function fetchLogs() {
 
     //if appDefinition.appUrl show a link with globe icon to it in new window
     if (appUrl) {
+      //remove all previous event listeners for click event
+      appUrlInternalLink.removeEventListener("click", () => {});
       const appUrlLink = document.createElement("a");
       appUrlLink.href = appUrl;
       appUrlLink.target = "_blank";
@@ -265,17 +267,22 @@ async function fetchLogs() {
         appUrlInternalLink.innerHTML = `<i class="fas fa-server"></i> <pre style="display:inline-block; margin:0px; position: relative; top: 6px;">${internalName}</pre>`;
         //span copy to clipboard text when clicked
         appUrlInternalLink.style.cursor = "pointer";
-        //remove all previous event listeners for click event
-        appUrlInternalLink.removeEventListener("click", () => {});
-        document.querySelector(".app-url-container").addEventListener("click", (e) => {
+
+        document
+          .querySelector(".app-url-container")
+          .addEventListener("click", (e) => {
             e.preventDefault();
             navigator.clipboard.writeText(internalName);
-            toastr.info("Nome interno copiato negli appunti: "+internalName, "Copiato", {
-              closeButton: true,
-              progressBar: true,
-              positionClass: "toast-bottom-right",
-              timeOut: 3000,
-            });
+            toastr.info(
+              "Nome interno copiato negli appunti: " + internalName,
+              "Copiato",
+              {
+                closeButton: true,
+                progressBar: true,
+                positionClass: "toast-bottom-right",
+                timeOut: 3000,
+              }
+            );
           });
         document.querySelector(".app-url-container").innerHTML =
           "| " + appUrlInternalLink.outerHTML;
