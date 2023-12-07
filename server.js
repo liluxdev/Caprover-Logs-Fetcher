@@ -126,6 +126,12 @@ router.get("/api", async (ctx) => {
       return;
     }
 
+    //generate appUrl contactenating appDefinition.appName and data.captainSubDomain and rootDomain
+    const appUrl = `http${appDefinition.forceSsl?"s":""}://${appDefinition.appName}.${data.captainSubDomain}.${data.rootDomain}`;
+    //
+
+
+
     ctx.body = {
       isAppBuilding: data.isAppBuilding,
       logs: logs,
@@ -138,6 +144,7 @@ router.get("/api", async (ctx) => {
       appDefinition,
       appDefinitions: appDefinitions.data.data,
       domain: appDefinitions.data.data.captainSubDomain+"."+appDefinitions.data.data.rootDomain,
+      appUrl,
 
     };
   } catch (error) {
