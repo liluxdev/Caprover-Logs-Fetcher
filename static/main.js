@@ -70,7 +70,7 @@ async function fetchLogs() {
     const respCheck = await fetch(fetchUrl);
 
     const respText = await respCheck.text();
-    console.log({respText});
+    console.log({ respText });
     // Controlla se la risposta è vuota
     if (!respCheck.ok || respCheck.status !== 200 || respText.trim === "") {
       toastr.error("Errore del server o risposta vuota", "Errore", {
@@ -145,35 +145,53 @@ async function fetchLogs() {
     let consoleLogsUpdated = false,
       buildLogsUpdated = false;
 
-    const newLogs = `<pre>${consoleLogs.trim() !=="" ? consoleLogs : "Nessun log di console disponibile"}</pre>`;
+    const newLogs = `<pre>${
+      consoleLogs.trim() !== ""
+        ? consoleLogs
+        : "Nessun log di console disponibile"
+    }</pre>`;
     //  const oldHtmlConsole = document.querySelector(".console-logs").innerHTML.trim();
     // console.log({oldHtmlConsole, newLogs, equals: oldHtmlConsole === newLogs.trim()});
 
-    const diffLogs = "disabled-diffing";//Diff.diffChars(oldConsole, newLogs);
+    const diffLogs = "disabled-diffing"; //Diff.diffChars(oldConsole, newLogs);
 
     if (oldConsole == "" || oldConsole !== newLogs) {
- 
       if (
         document.querySelector(".console-logs:hover") !== null &&
         oldConsole != ""
       ) {
-        console.warn("Update prevented by hover state",   document.querySelector(".console-logs:hover"));
+        console.warn(
+          "Update prevented by hover state",
+          document.querySelector(".console-logs:hover")
+        );
+        toastr.info(
+          "Sei in hover sulla console, per vedere i nuovi log esci dall'hover",
+          "Console non aggiornata",
+          {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-bottom-right",
+            timeOut: 3000,
+          }
+        );
       } else {
         document.querySelector(".console-logs").innerHTML = newLogs;
         oldConsole = newLogs;
         console.warn("Console logs updated", {
-            a: oldConsole,
-            b: newLogs,
-            equals: oldConsole === newLogs,
-            diffLogs,
-          });
+          a: oldConsole,
+          b: newLogs,
+          equals: oldConsole === newLogs,
+          diffLogs,
+        });
       }
 
       consoleLogsUpdated = true;
     }
 
-    const newBuildLogs = `<pre>${buildLogs.trim() !== "" ? buildLogs : "Nessun log di build disponibile"}</pre>`;
-    const diffBuild = "diffing-disabled";//Diff.diffChars(oldBuild, newBuildLogs);
+    const newBuildLogs = `<pre>${
+      buildLogs.trim() !== "" ? buildLogs : "Nessun log di build disponibile"
+    }</pre>`;
+    const diffBuild = "diffing-disabled"; //Diff.diffChars(oldBuild, newBuildLogs);
 
     // const oldHtmlBuild = document.querySelector(".build-logs").innerHTML.trim();
     // console.log({oldHtmlBuild, newLogs, equals: oldHtmlBuild === newBuildLogs.trim()});
@@ -184,16 +202,29 @@ async function fetchLogs() {
         document.querySelector(".build-logs:hover") !== null &&
         oldBuild != ""
       ) {
-        console.warn("Update prevented by hover state",    document.querySelector(".build-logs:hover"));
+        console.warn(
+          "Update prevented by hover state",
+          document.querySelector(".build-logs:hover")
+        );
+        toastr.info(
+            "Sei in hover sulla console di build, per vedere i nuovi log esci dall'hover",
+            "Console di build non aggiornata",
+            {
+              closeButton: true,
+              progressBar: true,
+              positionClass: "toast-bottom-right",
+              timeOut: 3000,
+            }
+          );
       } else {
         document.querySelector(".build-logs").innerHTML = newBuildLogs;
         oldBuild = newBuildLogs;
         console.warn("Build logs updated", {
-            a: oldBuild,
-            b: newBuildLogs,
-            equals: oldBuild === newBuildLogs,
-            diffBuild,
-          });
+          a: oldBuild,
+          b: newBuildLogs,
+          equals: oldBuild === newBuildLogs,
+          diffBuild,
+        });
       }
 
       buildLogsUpdated = true;
