@@ -63,6 +63,7 @@ body {
   flex-direction: column;
 }
 #toolbar {
+  user-select: none;
   padding: 10px;
   background-color: #f8f9fa; /* Colore di sfondo della barra degli strumenti */
 }
