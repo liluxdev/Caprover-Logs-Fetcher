@@ -93,13 +93,13 @@ async function fetchLogs() {
    
     
     // Convertire la stringa hex in un array di byte
-    let bytes = hexStringToByte(logs);
+    let bytes = hexStringToByte(consoleLogs);
     
     // Utilizzare TextDecoder per convertire in stringa UTF-8
     let utf8String = new TextDecoder('utf-8').decode(bytes);
     
    
-    logs = utf8String;
+    consoleLogs = utf8String;
 
     populateAllowedApps(allowedApps);
 
