@@ -140,8 +140,8 @@ async function fetchLogs() {
         diffLogs,
       });
       if (
-        document.querySelector(".console-logs:hover") === null ||
-        oldConsole == ""
+        document.querySelector(".console-logs:hover") === null &&
+        oldConsole != ""
       ) {
         console.warn("Update prevented by hover state");
       } else {
@@ -161,8 +161,8 @@ async function fetchLogs() {
     if (oldBuild == "" || oldBuild !== newBuildLogs) {
       oldBuild = newBuildLogs;
       if (
-        document.querySelector(".build-logs:hover") === null ||
-        oldBuild == ""
+        document.querySelector(".build-logs:hover") === null &&
+        oldBuild != ""
       ) {
         console.warn("Update prevented by hover state");
       } else {
