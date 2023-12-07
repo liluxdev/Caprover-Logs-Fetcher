@@ -129,6 +129,8 @@ async function fetchLogs() {
 
     consoleLogs = utf8String;
 
+    console.warn({ utf8String });
+
     document.querySelector("#char-limit-info").innerHTML =
       "| <strong>Console log:</strong> mostrando ultimi " +
       responseLogLen / 1000 +
