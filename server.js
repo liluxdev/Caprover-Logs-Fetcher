@@ -73,7 +73,7 @@ app.get("/api", async (req, res) => {
     console.log("logsResponse", JSON.stringify(Object.keys(logsResponse.data).length));
     const logs = logsResponse.data.data.logs;
 
-    console.log("hex logs", logs);
+    console.log("hex logs", logs.length);
 
     let buffer = Buffer.from(logs, 'hex');
 
@@ -82,7 +82,7 @@ app.get("/api", async (req, res) => {
 
     console.log(
       "utf8String",
-       utf8String
+       utf8String.length
     );
     console.log(
       "logsResponse",
@@ -107,7 +107,7 @@ app.get("/api", async (req, res) => {
     const { data } = buildLogsResponse.data;
     const response = {
       isAppBuilding: data.isAppBuilding,
-      logs: utf8String,//.split("\n").slice(-27).join("\n"),
+      logs: logs,//.split("\n").slice(-27).join("\n"),
       buildLogs: data.logs.lines.slice(-27).join("\n"),
      // appData: data,
       allowedApps,
