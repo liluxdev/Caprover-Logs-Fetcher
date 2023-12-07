@@ -101,7 +101,7 @@ async function fetchLogs() {
    
     consoleLogs = utf8String;
 
-    document.querySelector("#char-limit-info").innerHTML = "Mostrando "+;
+    document.querySelector("#char-limit-info").innerHTML = "Mostrando ";
 
     populateAllowedApps(allowedApps);
 
