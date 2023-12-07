@@ -70,6 +70,11 @@ app.get("/api", async (req, res) => {
       }
     );
     const logs = logsResponse.data.data.logs;
+
+    let buffer = Buffer.from(logs, 'hex');
+
+// Convertire il Buffer in una stringa UTF-8
+    let utf8String = buffer.toString('utf8');
     console.log(
       "logsResponse",
       JSON.stringify(Object.keys(logsResponse.data).length)
@@ -93,7 +98,7 @@ app.get("/api", async (req, res) => {
     const { data } = buildLogsResponse.data;
     const response = {
       isAppBuilding: data.isAppBuilding,
-      logs: logs.split("\n").slice(-27).join("\n"),
+      logs: utf8String.split("\n").slice(-27).join("\n"),
       buildLogs: data.logs.lines.slice(-27).join("\n"),
      // appData: data,
       allowedApps,
