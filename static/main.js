@@ -97,9 +97,24 @@ async function fetchLogs() {
     }
     let {
       logs: consoleLogs,
-      buildLogs, isAppBuilding, isBuildFailed, allowedApps, appUrl, appDefinition
+      buildLogs,
+      isAppBuilding,
+      isBuildFailed,
+      allowedApps,
+      appUrl,
+      appDefinition,
+      responseLogLen,
+      originalLogLen,
     } = resp;
-    console.log({ consoleLogs, buildLogs, isAppBuilding, isBuildFailed, allowedApps, appUrl, appDefinition });
+    console.log({
+      consoleLogs,
+      buildLogs,
+      isAppBuilding,
+      isBuildFailed,
+      allowedApps,
+      appUrl,
+      appDefinition,
+    });
 
     function hexStringToByte(str) {
       if (!str) {
@@ -202,15 +217,15 @@ async function fetchLogs() {
           document.querySelector(".build-logs:hover")
         );
         toastr.info(
-            "Sei in hover sulla console di build, per vedere i nuovi log esci dall'hover",
-            "Console di build non aggiornata",
-            {
-              closeButton: true,
-              progressBar: true,
-              positionClass: "toast-bottom-right",
-              timeOut: 3000,
-            }
-          );
+          "Sei in hover sulla console di build, per vedere i nuovi log esci dall'hover",
+          "Console di build non aggiornata",
+          {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-bottom-right",
+            timeOut: 3000,
+          }
+        );
       } else {
         document.querySelector(".build-logs").innerHTML = newBuildLogs;
         oldBuild = newBuildLogs;
@@ -234,13 +249,13 @@ async function fetchLogs() {
 
     //if appDefinition.appUrl show a link with globe icon to it in new window
     if (appUrl) {
-        const appUrlLink = document.createElement("a");
-        appUrlLink.href = appUrl;
-        appUrlLink.target = "_blank";
-        appUrlLink.rel = "noopener noreferrer";
-        appUrlLink.className = "app-url-link";
-        appUrlLink.innerHTML = `<i class="fas fa-globe"></i> ${appUrl}`;
-        document.querySelector(".app-url-container").appendChild(appUrlLink);
+      const appUrlLink = document.createElement("a");
+      appUrlLink.href = appUrl;
+      appUrlLink.target = "_blank";
+      appUrlLink.rel = "noopener noreferrer";
+      appUrlLink.className = "app-url-link";
+      appUrlLink.innerHTML = `<i class="fas fa-globe"></i> ${appUrl}`;
+      document.querySelector(".app-url-container").appendChild(appUrlLink);
     }
 
     //   const isBuildFailed = isBuildFailed;
