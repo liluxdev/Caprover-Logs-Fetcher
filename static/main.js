@@ -73,7 +73,7 @@ async function fetchLogs() {
       });
       return;
    }
-   let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps } = resp;
+   let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps, isBuildFailed } = resp;
     console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps });
 
     populateAllowedApps(allowedApps);
@@ -119,7 +119,7 @@ async function fetchLogs() {
           statusIcon.className = 'fas fa-check';
       }
 
-      const isBuildFailed = appData && appData.isBuildFailed;
+   //   const isBuildFailed = isBuildFailed;
 
       if (isBuildFailed) {
           statusIcon.className = 'fas fa-times';

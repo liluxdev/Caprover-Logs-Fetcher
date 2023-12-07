@@ -97,6 +97,7 @@ app.get("/api", async (req, res) => {
       buildLogs: data.logs.lines.join("\n"),
      // appData: data,
       allowedApps,
+      isBuildFailed: data.isBuildFailed,
     };
 
     const response2 = {
