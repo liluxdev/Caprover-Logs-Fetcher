@@ -138,6 +138,10 @@ app.get("/api", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+const compression = require('compression');
+app.use(compression());
+
+const server = app.listen(port, () => {
   console.log(`Server in ascolto sulla porta ${port}`);
 });
+server.timeout = 500000; // Imposta un timeout personalizzato, es. 500000 ms (500 secondi)
