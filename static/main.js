@@ -162,7 +162,7 @@ async function fetchLogs() {
         document.querySelector(".console-logs:hover") === null &&
         oldConsole != ""
       ) {
-        console.warn("Update prevented by hover state");
+        console.warn("Update prevented by hover state",   document.querySelector(".console-logs:hover"));
       } else {
         document.querySelector(".console-logs").innerHTML = newLogs;
         oldConsole = newLogs;
@@ -183,7 +183,7 @@ async function fetchLogs() {
         document.querySelector(".build-logs:hover") === null &&
         oldBuild != ""
       ) {
-        console.warn("Update prevented by hover state");
+        console.warn("Update prevented by hover state",    document.querySelector(".build-logs:hover"));
       } else {
         document.querySelector(".build-logs").innerHTML = newLogs;
         oldBuild = newBuildLogs;
