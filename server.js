@@ -60,7 +60,7 @@ app.get("/api", async (req, res) => {
 
     // Recupera i log usando l'API di CapRover
     const logsResponse = await axios.get(
-      `${caproverUrl}api/v2/user/apps/appData/${appName}/logs`,
+      `${caproverUrl}api/v2/user/apps/appData/${appName}/logs?encoding=hex&limit=2000`,
       {
         headers: { "x-captain-auth": token },
         encoding: "hex",
