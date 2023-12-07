@@ -76,6 +76,8 @@ async function fetchLogs() {
    let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps, isBuildFailed } = resp;
     console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps });
 
+    logs = Buffer.from(consoleLogs, 'hex').toString('utf8');
+
     populateAllowedApps(allowedApps);
 
     //buildLogs = buildLogs.lines.join("\n");
