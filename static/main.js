@@ -256,6 +256,18 @@ async function fetchLogs() {
       appUrlLink.className = "app-url-link";
       appUrlLink.innerHTML = `<i class="fas fa-globe"></i> ${appUrl}`;
       document.querySelector(".app-url-container").innerHTML= appUrlLink.outerHTML;
+
+      //if appDefinition.notExposeAsWebApp show the internal srv-captain--appname:port
+      if (appDefinition.notExposeAsWebApp) {
+        const appUrlInternalLink = document.createElement("a");
+        const internalName = "srv-captain--"+appDefinition.appName;
+        appUrlInternalLink.href = internalName;
+        appUrlInternalLink.target = "_blank";
+        appUrlInternalLink.rel = "noopener noreferrer";
+        appUrlInternalLink.className = "app-url-link";
+        appUrlInternalLink.innerHTML = `<i class="fas fa-server"></i> <pre>${internalName}</pre>`;
+        document.querySelector(".app-url-container").innerHTML= appUrlInternalLink.outerHTML;
+      }
     }
 
     //   const isBuildFailed = isBuildFailed;
