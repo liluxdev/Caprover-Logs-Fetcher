@@ -128,8 +128,11 @@ router.get("/api", async (ctx) => {
     }
 
     //generate appUrl contactenating appDefinition.appName and data.captainSubDomain and rootDomain
-    const appUrl = `http${appDefinition.forceSsl?"s":""}://${appDefinition.appName}.${appsData.captainSubDomain}.${appsData.rootDomain}`;
-    //
+    let appUrl = `http${appDefinition.forceSsl?"s":""}://${appDefinition.appName}.${appsData.captainSubDomain}.${appsData.rootDomain}`;
+    //if appDefinition.customDomain[0].publicDomain use it
+    if (appDefinition.customDomain[0]?.publicDomain) {
+      appUrl = `http${appDefinition.customDomain[0].hasSsl?"s":""}://${appDefinition.customDomain[0].publicDomain}`;
+    }
 
 
 
