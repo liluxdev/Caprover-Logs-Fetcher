@@ -50,6 +50,7 @@ app.get("/api", async (req, res) => {
       }
     );
     const logs = logsResponse.data.data.logs;
+    console.log("logsResponse", JSON.stringify(logsResponse.data));
 
     // Get build logs from CapRover API
     const buildLogsResponse = await axios.get(
