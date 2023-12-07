@@ -130,7 +130,6 @@ async function fetchLogs() {
     consoleLogs = utf8String;
 
     console.warn({ consoleLogs });
-    debugger
 
     document.querySelector("#char-limit-info").innerHTML =
       "| <strong>Console log:</strong> mostrando ultimi " +
@@ -145,7 +144,7 @@ async function fetchLogs() {
 
     let consoleLogsUpdated = false,
       buildLogsUpdated = false;
-      
+
     const newLogs = `<pre>${consoleLogs}</pre>`;
     //  const oldHtmlConsole = document.querySelector(".console-logs").innerHTML.trim();
     // console.log({oldHtmlConsole, newLogs, equals: oldHtmlConsole === newLogs.trim()});
