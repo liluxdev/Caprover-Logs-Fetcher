@@ -172,7 +172,7 @@ async function fetchLogs() {
     }
 
     const newBuildLogs = `<pre>${buildLogs}</pre>`;
-    const diffBuild = Diff.diffChars(oldBuild, newBuildLogs);
+    const diffBuild = "diffing-disabled";//Diff.diffChars(oldBuild, newBuildLogs);
 
     // const oldHtmlBuild = document.querySelector(".build-logs").innerHTML.trim();
     // console.log({oldHtmlBuild, newLogs, equals: oldHtmlBuild === newBuildLogs.trim()});
