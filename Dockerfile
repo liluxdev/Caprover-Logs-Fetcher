@@ -1,5 +1,5 @@
 
-FROM node:14
+FROM node:19
 
 WORKDIR /usr/src/app
 
@@ -11,4 +11,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD [ "node", "--max-old-space-size=4048","server.js" ]
+CMD [ "node", "--max-old-space-size=2048","server.js" ]
