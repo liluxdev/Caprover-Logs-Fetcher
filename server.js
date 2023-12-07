@@ -19,26 +19,43 @@ app.get("/api", async (req, res) => {
     //check secret
     const secret = req.query.secret;
     if (!secret) {
-     // return res.status(400).send('Il parametro "secret" è obbligatorio');
-      return res.status(400).send(JSON.stringify({error:'Il parametro "secret" è obbligatorio'}));
-
+      // return res.status(400).send('Il parametro "secret" è obbligatorio');
+      return res
+        .status(400)
+        .send(
+          JSON.stringify({ error: 'Il parametro "secret" è obbligatorio' })
+        );
     }
     if (secret !== SECRTET) {
-    //  return res.status(400).send('Il parametro "secret" non è valido');
-      return res.status(400).send(JSON.stringify({error:'Il parametro "secret" non è valido'}));
+      //  return res.status(400).send('Il parametro "secret" non è valido');
+      return res
+        .status(400)
+        .send(JSON.stringify({ error: 'Il parametro "secret" non è valido' }));
     }
     const appName = req.query.appName;
     if (!appName) {
-      return res.status(400).send(JSON.stringify({error:'Il parametro "appName" è obbligatorio'}));
+      return res
+        .status(400)
+        .send(
+          JSON.stringify({ error: 'Il parametro "appName" è obbligatorio' })
+        );
     }
     if (!allowedApps.includes(appName)) {
-      return res.status(400).send(JSON.stringify({error:'Il parametro "appName" non è valido'}));
+      return res
+        .status(400)
+        .send(JSON.stringify({ error: 'Il parametro "appName" non è valido' }));
     }
     console.log("Recuperando i log da CapRover", appName);
     // Ottenere token da CapRover
-    const tokenResponse = await axios.post(`${caproverUrl}api/v2/login`, {
-      password: caproverPassword,
-    });
+    const tokenResponse = await axios.post(
+      `${caproverUrl}api/v2/login`,
+      {
+        password: caproverPassword,
+      },
+      {
+        timeout: 2000, // Timeout impostato a 5000 millisecondi
+      }
+    );
     const token = tokenResponse.data.data.token;
 
     // Recupera i log usando l'API di CapRover
@@ -47,10 +64,16 @@ app.get("/api", async (req, res) => {
       {
         headers: { "x-captain-auth": token },
         encoding: "utf8",
+      },
+      {
+        timeout: 2000, // Timeout impostato a 5000 millisecondi
       }
     );
     const logs = logsResponse.data.data.logs;
-    console.log("logsResponse", JSON.stringify(Object.keys(logsResponse.data).length));
+    console.log(
+      "logsResponse",
+      JSON.stringify(Object.keys(logsResponse.data).length)
+    );
 
     // Get build logs from CapRover API
     const buildLogsResponse = await axios.get(
@@ -58,23 +81,38 @@ app.get("/api", async (req, res) => {
       {
         headers: { "x-captain-auth": token },
         encoding: "utf8",
+      },
+      {
+        timeout: 2000, // Timeout impostato a 5000 millisecondi
       }
     );
-    console.log("buildLogsResponse", JSON.stringify(Object.keys(buildLogsResponse.data).length));
-    const {data} = buildLogsResponse.data;
-    const response = { 
-       isAppBuilding: data.isAppBuilding,
-       logs,
-       buildLogs: data.logs,
-       appData: data,
-       allowedApps 
+    console.log(
+      "buildLogsResponse",
+      JSON.stringify(Object.keys(buildLogsResponse.data).length)
+    );
+    const { data } = buildLogsResponse.data;
+    const response = {
+      isAppBuilding: data.isAppBuilding,
+      logs,
+      buildLogs: data.logs,
+      appData: data,
+      allowedApps,
     };
-    console.log("sending response for "+appName, JSON.stringify(Object.keys(response).length));
+    console.log(
+      "sending response for " + appName,
+      JSON.stringify(Object.keys(response).length)
+    );
     res.send(response);
     //console.log("sending response json",response);
   } catch (error) {
     console.trace(error);
-    res.status(500).send(JSON.stringify({error:"Errore nel recuperare i log: " + error.message}));
+    res
+      .status(500)
+      .send(
+        JSON.stringify({
+          error: "Errore nel recuperare i log: " + error.message,
+        })
+      );
   }
 });
 
