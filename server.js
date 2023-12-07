@@ -85,7 +85,8 @@ app.get("/api", async (req, res) => {
 
     console.log(
       "utf8String",
-       utf8String.length
+       utf8String.length,
+       utf8String
     );
     console.log(
       "logsResponse",
