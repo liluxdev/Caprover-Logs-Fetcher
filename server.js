@@ -71,10 +71,17 @@ app.get("/api", async (req, res) => {
     );
     const logs = logsResponse.data.data.logs;
 
+    console.log("hex logs", logs);
+
     let buffer = Buffer.from(logs, 'hex');
 
 // Convertire il Buffer in una stringa UTF-8
     let utf8String = buffer.toString('utf8');
+
+    console.log(
+      "utf8String",
+       utf8String
+    );
     console.log(
       "logsResponse",
       JSON.stringify(Object.keys(logsResponse.data).length)
