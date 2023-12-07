@@ -2,6 +2,7 @@ window.isAppNamesPopulated = false;
 window.enabledAutoRefresh = true;
 window.oldConsole = "";
 window.oldBuild = "";
+window.REFRESH_LOG_INTERVAL = 5;
 function populateAllowedApps(allowedApps) {
   if (isAppNamesPopulated) {
     return;
@@ -390,5 +391,5 @@ async function fetchLogs() {
 window.onload = fetchLogs;
 
 if (enabledAutoRefresh) {
-  setInterval(() => fetchLogs(), 30 * 1000);
+  setInterval(() => fetchLogs(), REFRESH_LOG_INTERVAL * 1000);
 }
