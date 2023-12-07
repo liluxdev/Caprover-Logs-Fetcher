@@ -158,13 +158,14 @@ async function fetchLogs() {
 
     if (oldBuild == "" || oldBuild !== newBuildLogs) {
       oldBuild = newBuildLogs;
-      if (
-        oldBuild == "" ||
-        document.querySelector(".build-logs:hover") === null
-      ) {
-        document.querySelector(".build-logs").innerHTML = newBuildLogs;
+      if (oldBuild == "") {
+        if (document.querySelector(".build-logs:hover") === null) {
+          console.warn("Update prevented by hover state");
+        } else {
+          document.querySelector(".build-logs").innerHTML = newLogs;
+          oldBuild = newBuildLogs;
+        }
       }
-      oldConsole = newLogs;
       buildLogsUpdated = true;
     }
 
