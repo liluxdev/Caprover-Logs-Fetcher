@@ -260,14 +260,15 @@ async function fetchLogs() {
 
       //if appDefinition.notExposeAsWebApp show the internal srv-captain--appname:port
       if (appDefinition.notExposeAsWebApp) {
+        const internalName = "srv-captain--" + appDefinition.appName;
         const appUrlInternalLink = document.createElement("span");
         appUrlInternalLink.innerHTML = `<i class="fas fa-server"></i> <pre style="display:inline-block; margin:0px; position: relative; top: 6px;">${internalName}</pre>`;
         //span copy to clipboard text when clicked
         appUrlInternalLink.style.cursor = "pointer";
         appUrlInternalLink.addEventListener("click", (e) => {
           e.preventDefault();
-          navigator.clipboard.writeText(appUrlInternalLink);
-          toast.info("Nome interno copiato negli appunti: "+appUrlInternalLink, "Copiato", {
+          navigator.clipboard.writeText(internalName);
+          toast.info("Nome interno copiato negli appunti: "+internalName, "Copiato", {
             closeButton: true,
             progressBar: true,
             positionClass: "toast-bottom-right",
