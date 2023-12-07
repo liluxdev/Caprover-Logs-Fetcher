@@ -71,8 +71,8 @@ app.get("/api", async (req, res) => {
     );
 
     console.log("logsResponse", JSON.stringify(Object.keys(logsResponse.data).length));
-    const logs = logsResponse.data.data.logs;
-
+    let logs = logsResponse.data.data.logs;
+    logs = logs.slice(-2700);
     console.log("hex logs", logs.length, logs);
 
     let buffer = Buffer.from(logs, 'hex');
