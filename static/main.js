@@ -185,7 +185,7 @@ async function fetchLogs() {
       ) {
         console.warn("Update prevented by hover state",    document.querySelector(".build-logs:hover"));
       } else {
-        document.querySelector(".build-logs").innerHTML = newLogs;
+        document.querySelector(".build-logs").innerHTML = newBuildLogs;
         oldBuild = newBuildLogs;
       }
 
