@@ -101,7 +101,7 @@ app.get("/api", async (req, res) => {
     console.log(
       "sending response for " + appName,
       JSON.stringify(Object.keys(response).length),
-      data.logs
+      response
     );
     res.send(response);
     //console.log("sending response json",response);
