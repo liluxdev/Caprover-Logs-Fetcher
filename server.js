@@ -3,6 +3,8 @@ const Router = require('koa-router');
 const serve = require('koa-static');
 const axios = require('axios');
 const path = require('path');
+const compress = require('koa-compress');
+
 
 const app = new Koa();
 const router = new Router();
@@ -12,6 +14,22 @@ const caproverPassword = process.env.CAPROVER_PASSWORD;
 const allowedApps = process.env.ALLOWED_APPS.split(",");
 const SECRET = process.env.SECRET;
 const MAX_LOG_CHARS = process.env.MAX_LOG_CHARS || 18 * 1000;
+
+
+// Configurazione della compressione
+app.use(compress({
+  filter(content_type) {
+    return /text/i.test(content_type)
+  },
+  threshold: 2048,
+  gzip: {
+    flush: require('zlib').constants.Z_SYNC_FLUSH
+  },
+  deflate: {
+    flush: require('zlib').constants.Z_SYNC_FLUSH,
+  },
+  br: false // disabilita brotli
+}));
 
 app.use(serve("./static/"));
 
