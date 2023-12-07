@@ -72,7 +72,10 @@ app.get("/api", async (req, res) => {
 
     console.log("logsResponse", JSON.stringify(Object.keys(logsResponse.data).length));
     let logs = logsResponse.data.data.logs;
+    let originalLogLen = logs.length;
     logs = logs.length > MAX_LOG_CHARS ? logs.slice(-MAX_LOG_CHARS) : logs;
+    let responseLogLen = logs.length;
+
     console.log("hex logs", logs.length, logs);
 
     let buffer = Buffer.from(logs, 'hex');
@@ -112,6 +115,8 @@ app.get("/api", async (req, res) => {
      // appData: data,
       allowedApps,
       isBuildFailed: data.isBuildFailed,
+      originalLogLen,
+      responseLogLen,
     };
 
 /*     console.log(
