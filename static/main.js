@@ -258,9 +258,11 @@ async function fetchLogs() {
       document.querySelector(".app-url-container").innerHTML =
         "| " + appUrlLink.outerHTML;
       //remove all previous event listeners for click event
+      try{
       document
         .querySelector(".app-url-container")
-        .removeEventListener("click", () => {});
+        .removeEventListener("click",  window.prevListener);
+      }catch(e){}
       //if appDefinition.notExposeAsWebApp show the internal srv-captain--appname:port
       if (appDefinition.notExposeAsWebApp) {
         const internalName = "srv-captain--" + appDefinition.appName;
@@ -268,23 +270,23 @@ async function fetchLogs() {
         appUrlInternalLink.innerHTML = `<i class="fas fa-server"></i> <pre style="display:inline-block; margin:0px; position: relative; top: 6px;">${internalName}</pre>`;
         //span copy to clipboard text when clicked
         appUrlInternalLink.style.cursor = "pointer";
-
+        window.prevListener = (e) => {
+          e.preventDefault();
+          navigator.clipboard.writeText(internalName);
+          toastr.info(
+            "Nome interno copiato negli appunti: " + internalName,
+            "Copiato",
+            {
+              closeButton: true,
+              progressBar: true,
+              positionClass: "toast-bottom-right",
+              timeOut: 3000,
+            }
+          );
+        };
         document
           .querySelector(".app-url-container")
-          .addEventListener("click", (e) => {
-            e.preventDefault();
-            navigator.clipboard.writeText(internalName);
-            toastr.info(
-              "Nome interno copiato negli appunti: " + internalName,
-              "Copiato",
-              {
-                closeButton: true,
-                progressBar: true,
-                positionClass: "toast-bottom-right",
-                timeOut: 3000,
-              }
-            );
-          });
+          .addEventListener("click", window.prevListener);
         document.querySelector(".app-url-container").innerHTML =
           "| " + appUrlInternalLink.outerHTML;
       }
