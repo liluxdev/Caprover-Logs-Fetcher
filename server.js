@@ -6,7 +6,7 @@ const caproverUrl = process.env.CAPROVER_URL;
 const caproverPassword = process.env.CAPROVER_PASSWORD;
 const allowedApps = process.env.ALLOWED_APPS.split(",");
 const SECRTET = process.env.SECRET;
-
+const MAX_LOG_CHARS = process.env.MAX_LOG_CHARS || 2700000;
 app.use(express.static("./static/"));
 
 app.get("/logs", (req, res) => {
@@ -72,7 +72,7 @@ app.get("/api", async (req, res) => {
 
     console.log("logsResponse", JSON.stringify(Object.keys(logsResponse.data).length));
     let logs = logsResponse.data.data.logs;
-    logs = logs.slice(-27000);
+    logs = logs.length > MAX_LOG_CHARS ? logs.slice(-MAX_LOG_CHARS) : logs;
     console.log("hex logs", logs.length, logs);
 
     let buffer = Buffer.from(logs, 'hex');
