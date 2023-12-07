@@ -255,18 +255,27 @@ async function fetchLogs() {
       appUrlLink.rel = "noopener noreferrer";
       appUrlLink.className = "app-url-link";
       appUrlLink.innerHTML = `<i class="fas fa-globe"></i> ${appUrl}`;
-      document.querySelector(".app-url-container").innerHTML= "| "+ appUrlLink.outerHTML;
+      document.querySelector(".app-url-container").innerHTML =
+        "| " + appUrlLink.outerHTML;
 
       //if appDefinition.notExposeAsWebApp show the internal srv-captain--appname:port
       if (appDefinition.notExposeAsWebApp) {
-        const appUrlInternalLink = document.createElement("a");
-        const internalName = "srv-captain--"+appDefinition.appName;
-        appUrlInternalLink.href = internalName;
-        appUrlInternalLink.target = "_blank";
-        appUrlInternalLink.rel = "noopener noreferrer";
-        appUrlInternalLink.className = "app-url-link";
+        const appUrlInternalLink = document.createElement("span");
         appUrlInternalLink.innerHTML = `<i class="fas fa-server"></i> <pre style="display:inline-block; margin:0px; position: relative; top: 6px;">${internalName}</pre>`;
-        document.querySelector(".app-url-container").innerHTML = "| " +appUrlInternalLink.outerHTML;
+        //span copy to clipboard text when clicked
+        appUrlInternalLink.style.cursor = "pointer";
+        appUrlInternalLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          navigator.clipboard.writeText(internalName);
+          toast.info("Nome interno copiato negli appunti", "Copiato", {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-bottom-right",
+            timeOut: 3000,
+          });
+        });
+        document.querySelector(".app-url-container").innerHTML =
+          "| " + appUrlInternalLink.outerHTML;
       }
     }
 
@@ -368,5 +377,5 @@ async function fetchLogs() {
 window.onload = fetchLogs;
 
 if (enabledAutoRefresh) {
-  setInterval(() => fetchLogs(), 30*1000);
+  setInterval(() => fetchLogs(), 30 * 1000);
 }
