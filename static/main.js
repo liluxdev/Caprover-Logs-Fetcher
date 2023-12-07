@@ -270,7 +270,7 @@ async function fetchLogs() {
         document.querySelector(".app-url-container").addEventListener("click", (e) => {
             e.preventDefault();
             navigator.clipboard.writeText(internalName);
-            toast.info("Nome interno copiato negli appunti: "+internalName, "Copiato", {
+            toastr.info("Nome interno copiato negli appunti: "+internalName, "Copiato", {
               closeButton: true,
               progressBar: true,
               positionClass: "toast-bottom-right",
