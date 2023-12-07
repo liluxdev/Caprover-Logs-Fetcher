@@ -139,14 +139,16 @@ async function fetchLogs() {
         equals: oldConsole === newLogs,
         diffLogs,
       });
-      if (oldConsole == "") {
-        if (document.querySelector(".console-logs:hover") === null) {
-          console.warn("Update prevented by hover state");
-        } else {
-          document.querySelector(".console-logs").innerHTML = newLogs;
-          oldConsole = newLogs;
-        }
+      if (
+        document.querySelector(".console-logs:hover") === null ||
+        oldConsole == ""
+      ) {
+        console.warn("Update prevented by hover state");
+      } else {
+        document.querySelector(".console-logs").innerHTML = newLogs;
+        oldConsole = newLogs;
       }
+
       consoleLogsUpdated = true;
     }
 
@@ -158,14 +160,16 @@ async function fetchLogs() {
 
     if (oldBuild == "" || oldBuild !== newBuildLogs) {
       oldBuild = newBuildLogs;
-      if (oldBuild == "") {
-        if (document.querySelector(".build-logs:hover") === null) {
-          console.warn("Update prevented by hover state");
-        } else {
-          document.querySelector(".build-logs").innerHTML = newLogs;
-          oldBuild = newBuildLogs;
-        }
+      if (
+        document.querySelector(".build-logs:hover") === null ||
+        oldBuild == ""
+      ) {
+        console.warn("Update prevented by hover state");
+      } else {
+        document.querySelector(".build-logs").innerHTML = newLogs;
+        oldBuild = newBuildLogs;
       }
+
       buildLogsUpdated = true;
     }
 
