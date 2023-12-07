@@ -76,7 +76,30 @@ async function fetchLogs() {
    let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps, isBuildFailed } = resp;
     console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps });
 
-    logs = Buffer.from(consoleLogs, 'hex').toString('utf8');
+    function hexStringToByte(str) {
+        if (!str) {
+            return new Uint8Array(0);
+        }
+    
+        var byteArray = [];
+        for (var i = 0; i < str.length; i += 2) {
+            byteArray.push(parseInt(str.substr(i, 2), 16));
+        }
+    
+        return new Uint8Array(byteArray);
+    }
+    
+    // La tua stringa esadecimale
+   
+    
+    // Convertire la stringa hex in un array di byte
+    let bytes = hexStringToByte(logs);
+    
+    // Utilizzare TextDecoder per convertire in stringa UTF-8
+    let utf8String = new TextDecoder('utf-8').decode(bytes);
+    
+   
+    logs = utf8String;
 
     populateAllowedApps(allowedApps);
 
