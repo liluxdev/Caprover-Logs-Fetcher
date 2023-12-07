@@ -152,12 +152,7 @@ async function fetchLogs() {
     const diffLogs = "disabled-diffing";//Diff.diffChars(oldConsole, newLogs);
 
     if (oldConsole == "" || oldConsole !== newLogs) {
-      console.warn("Console logs updated", {
-        a: oldConsole,
-        b: newLogs,
-        equals: oldConsole === newLogs,
-        diffLogs,
-      });
+ 
       if (
         document.querySelector(".console-logs:hover") !== null &&
         oldConsole != ""
@@ -166,6 +161,12 @@ async function fetchLogs() {
       } else {
         document.querySelector(".console-logs").innerHTML = newLogs;
         oldConsole = newLogs;
+        console.warn("Console logs updated", {
+            a: oldConsole,
+            b: newLogs,
+            equals: oldConsole === newLogs,
+            diffLogs,
+          });
       }
 
       consoleLogsUpdated = true;
@@ -187,6 +188,12 @@ async function fetchLogs() {
       } else {
         document.querySelector(".build-logs").innerHTML = newBuildLogs;
         oldBuild = newBuildLogs;
+        console.warn("Build logs updated", {
+            a: oldBuild,
+            b: newBuildLogs,
+            equals: oldBuild === newBuildLogs,
+            diffBuild,
+          });
       }
 
       buildLogsUpdated = true;
