@@ -70,8 +70,9 @@ async function fetchLogs() {
     const respCheck = await fetch(fetchUrl);
 
     const respText = await respCheck.text();
+    console.log({respText});
     // Controlla se la risposta è vuota
-    if (!respCheck.ok || respCheck.status !== 200 || respText === "") {
+    if (!respCheck.ok || respCheck.status !== 200 || respText.trim === "") {
       toastr.error("Errore del server o risposta vuota", "Errore", {
         closeButton: true,
         progressBar: true,
