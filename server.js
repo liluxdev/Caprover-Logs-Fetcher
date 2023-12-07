@@ -72,7 +72,7 @@ app.get("/api", async (req, res) => {
     console.log("sending response", JSON.stringify(response));
     res.send(JSON.stringify(response));
   } catch (error) {
-    console.error(error.message);
+    console.trace(error);
     res.status(500).send(JSON.stringify({error:"Errore nel recuperare i log: " + error.message}));
   }
 });
