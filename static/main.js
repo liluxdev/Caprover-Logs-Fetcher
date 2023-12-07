@@ -73,7 +73,8 @@ async function fetchLogs() {
       });
       return;
    }
-   let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps, isBuildFailed } = resp;
+   let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps, isBuildFailed,  originalLogLen,
+    responseLogLen } = resp;
     console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps });
 
     function hexStringToByte(str) {
@@ -101,7 +102,7 @@ async function fetchLogs() {
    
     consoleLogs = utf8String;
 
-    document.querySelector("#char-limit-info").innerHTML = "Mostrando ";
+    document.querySelector("#char-limit-info").innerHTML = "Mostrando "+originalLogLen/1000+"k caratteri su "+responseLogLen/1000+"k totali";
 
     populateAllowedApps(allowedApps);
 
