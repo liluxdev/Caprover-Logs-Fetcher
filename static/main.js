@@ -249,8 +249,6 @@ async function fetchLogs() {
 
     //if appDefinition.appUrl show a link with globe icon to it in new window
     if (appUrl) {
-      //remove all previous event listeners for click event
-      appUrlInternalLink.removeEventListener("click", () => {});
       const appUrlLink = document.createElement("a");
       appUrlLink.href = appUrl;
       appUrlLink.target = "_blank";
@@ -259,7 +257,10 @@ async function fetchLogs() {
       appUrlLink.innerHTML = `<i class="fas fa-globe"></i> ${appUrl}`;
       document.querySelector(".app-url-container").innerHTML =
         "| " + appUrlLink.outerHTML;
-
+      //remove all previous event listeners for click event
+      document
+        .querySelector(".app-url-container")
+        .removeEventListener("click", () => {});
       //if appDefinition.notExposeAsWebApp show the internal srv-captain--appname:port
       if (appDefinition.notExposeAsWebApp) {
         const internalName = "srv-captain--" + appDefinition.appName;
