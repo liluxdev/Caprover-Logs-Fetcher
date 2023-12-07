@@ -145,7 +145,7 @@ async function fetchLogs() {
     let consoleLogsUpdated = false,
       buildLogsUpdated = false;
 
-    const newLogs = `<pre>${consoleLogs !=="" ? consoleLogs : "Nessun log di console disponibile"}</pre>`;
+    const newLogs = `<pre>${consoleLogs.trim() !=="" ? consoleLogs : "Nessun log di console disponibile"}</pre>`;
     //  const oldHtmlConsole = document.querySelector(".console-logs").innerHTML.trim();
     // console.log({oldHtmlConsole, newLogs, equals: oldHtmlConsole === newLogs.trim()});
 
@@ -172,7 +172,7 @@ async function fetchLogs() {
       consoleLogsUpdated = true;
     }
 
-    const newBuildLogs = `<pre>${buildLogs !== "" ? buildLogs : "Nessun log di build disponibile"}</pre>`;
+    const newBuildLogs = `<pre>${buildLogs.trim() !== "" ? buildLogs : "Nessun log di build disponibile"}</pre>`;
     const diffBuild = "diffing-disabled";//Diff.diffChars(oldBuild, newBuildLogs);
 
     // const oldHtmlBuild = document.querySelector(".build-logs").innerHTML.trim();
