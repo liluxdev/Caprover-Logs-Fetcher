@@ -117,10 +117,10 @@ router.get("/api", async (ctx) => {
     );
 
     //find appName in appDefinitions
-    const appDefinition = appDefinitions.data.data.appDefinitions.data.find(
+    const appDefinition = appDefinitions.data.data.appDefinitions.find(
       (app) => app.name === appName
     );
-    if (false && !appDefinition) {
+    if (!appDefinition) {
       ctx.status = 400;
       ctx.body = { error: "App non trovata" };
       return;
