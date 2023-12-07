@@ -138,8 +138,8 @@ app.get("/api", async (req, res) => {
   }
 });
 
-const compression = require('compression');
-app.use(compression());
+//const compression = require('compression');
+//app.use(compression());
 
 const server = app.listen(port, () => {
   console.log(`Server in ascolto sulla porta ${port}`);
