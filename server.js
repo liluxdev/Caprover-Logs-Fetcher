@@ -1,10 +1,9 @@
-const Koa = require('koa');
-const Router = require('koa-router');
-const serve = require('koa-static');
-const axios = require('axios');
-const path = require('path');
-const compress = require('koa-compress');
-
+const Koa = require("koa");
+const Router = require("koa-router");
+const serve = require("koa-static");
+const axios = require("axios");
+const path = require("path");
+const compress = require("koa-compress");
 
 const app = new Koa();
 const router = new Router();
@@ -15,29 +14,30 @@ const allowedApps = process.env.ALLOWED_APPS.split(",");
 const SECRET = process.env.SECRET;
 const MAX_LOG_CHARS = process.env.MAX_LOG_CHARS || 18 * 1000;
 
-
 // Configurazione della compressione
-app.use(compress({
-  filter(content_type) {
-    return /text/i.test(content_type)
-  },
-  threshold: 2048,
-  gzip: {
-    flush: require('zlib').constants.Z_SYNC_FLUSH
-  },
-  deflate: {
-    flush: require('zlib').constants.Z_SYNC_FLUSH,
-  },
-  br: false // disabilita brotli
-}));
+app.use(
+  compress({
+    filter(content_type) {
+      return /text/i.test(content_type);
+    },
+    threshold: 2048,
+    gzip: {
+      flush: require("zlib").constants.Z_SYNC_FLUSH,
+    },
+    deflate: {
+      flush: require("zlib").constants.Z_SYNC_FLUSH,
+    },
+    br: false, // disabilita brotli
+  })
+);
 
 app.use(serve("./static/"));
 
-router.get('/logs', async (ctx) => {
+router.get("/logs", async (ctx) => {
   ctx.sendFile(path.join(__dirname, "/static/index.html"));
 });
 
-router.get('/api', async (ctx) => {
+router.get("/api", async (ctx) => {
   try {
     const secret = ctx.query.secret;
     if (!secret) {
@@ -64,21 +64,40 @@ router.get('/api', async (ctx) => {
     }
 
     console.log("Recuperando i log da CapRover", appName);
-    const tokenResponse = await axios.post(`${caproverUrl}api/v2/login`, { password: caproverPassword }, { timeout: 2000 });
+    const tokenResponse = await axios.post(
+      `${caproverUrl}api/v2/login`,
+      { password: caproverPassword },
+      { timeout: 2000 }
+    );
     const token = tokenResponse.data.data.token;
 
-    const logsResponse = await axios.get(`${caproverUrl}api/v2/user/apps/appData/${appName}/logs?encoding=hex&limit=1000`, { headers: { "x-captain-auth": token }, timeout: 2000 });
+    const logsResponse = await axios.get(
+      `${caproverUrl}api/v2/user/apps/appData/${appName}/logs`,
+      {
+        params: {
+          encoding: "hex",
+        },
+        headers: { "x-captain-auth": token },
+        timeout: 2000,
+      }
+    );
+
     let logs = logsResponse.data.data.logs;
     let originalLogLen = logs.length;
     logs = logs.length > MAX_LOG_CHARS ? logs.slice(-MAX_LOG_CHARS) : logs;
     let responseLogLen = logs.length;
 
-    let buffer = Buffer.from(logs, 'hex');
-    let utf8String = buffer.toString('utf8');
+    let buffer = Buffer.from(logs, "hex");
+    let utf8String = buffer.toString("utf8");
 
-    const buildLogsResponse = await axios.get(`${caproverUrl}api/v2/user/apps/appData/${appName}`, { headers: { "x-captain-auth": token }, timeout: 2000 });
+    const buildLogsResponse = await axios.get(
+      `${caproverUrl}api/v2/user/apps/appData/${appName}`,
+      {
+        headers: { "x-captain-auth": token },
+        timeout: 2000,
+      }
+    );
     const { data } = buildLogsResponse.data;
-
 
     ctx.body = {
       isAppBuilding: data.isAppBuilding,
