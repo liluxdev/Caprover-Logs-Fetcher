@@ -266,8 +266,8 @@ async function fetchLogs() {
         appUrlInternalLink.style.cursor = "pointer";
         appUrlInternalLink.addEventListener("click", (e) => {
           e.preventDefault();
-          navigator.clipboard.writeText(internalName);
-          toast.info("Nome interno copiato negli appunti", "Copiato", {
+          navigator.clipboard.writeText(appUrlInternalLink);
+          toast.info("Nome interno copiato negli appunti: "+appUrlInternalLink, "Copiato", {
             closeButton: true,
             progressBar: true,
             positionClass: "toast-bottom-right",
