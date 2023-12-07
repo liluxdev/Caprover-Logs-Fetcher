@@ -102,7 +102,7 @@ async function fetchLogs() {
    
     consoleLogs = utf8String;
 
-    document.querySelector("#char-limit-info").innerHTML = "<strong>Console log:</strong> mostrando ultimi "+responseLogLen/1000+"k caratteri su "+originalLogLen/1000+"k totali";
+    document.querySelector("#char-limit-info").innerHTML = "| <strong>Console log:</strong> mostrando ultimi "+responseLogLen/1000+"k caratteri su "+originalLogLen/1000+"k totali";
 
     populateAllowedApps(allowedApps);
 
