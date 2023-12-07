@@ -69,6 +69,8 @@ app.get("/api", async (req, res) => {
         timeout: 2000, // Timeout impostato a 5000 millisecondi
       }
     );
+
+    console.log("logsResponse", JSON.stringify(Object.keys(logsResponse.data).length);
     const logs = logsResponse.data.data.logs;
 
     console.log("hex logs", logs);
