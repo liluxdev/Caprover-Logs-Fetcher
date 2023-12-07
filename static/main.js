@@ -82,7 +82,7 @@ async function fetchLogs() {
     }
 
     // Continua solo se la risposta contiene dati
-    const resp = await respCheck.json();
+    const resp = JSON.parse(respText);
 
     let { error } = resp;
     if (error) {
