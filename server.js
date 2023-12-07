@@ -6,7 +6,7 @@ const caproverUrl = process.env.CAPROVER_URL;
 const caproverPassword = process.env.CAPROVER_PASSWORD;
 const allowedApps = process.env.ALLOWED_APPS.split(",");
 const SECRTET = process.env.SECRET;
-const MAX_LOG_CHARS = process.env.MAX_LOG_CHARS || 30000;
+const MAX_LOG_CHARS = process.env.MAX_LOG_CHARS || 28000;
 app.use(express.static("./static/"));
 
 app.get("/logs", (req, res) => {
