@@ -104,7 +104,7 @@ async function fetchLogs() {
       originalLogLen,
       responseLogLen,
     } = resp;
-    console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps });
+    console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps, appDefinition, appUrl });
 
     function hexStringToByte(str) {
       if (!str) {
@@ -235,6 +235,17 @@ async function fetchLogs() {
       statusIcon.className = "fas fa-cog fa-spin";
     } else {
       statusIcon.className = "fas fa-check";
+    }
+
+    //if appDefinition.appUrl show a link with globe icon to it in new window
+    if (appUrl) {
+        const appUrlLink = document.createElement("a");
+        appUrlLink.href = appUrl;
+        appUrlLink.target = "_blank";
+        appUrlLink.rel = "noopener noreferrer";
+        appUrlLink.className = "app-url-link";
+        appUrlLink.innerHTML = `<i class="fas fa-globe"></i> ${appUrl}`;
+        document.querySelector(".app-url-container").appendChild(appUrlLink);
     }
 
     //   const isBuildFailed = isBuildFailed;
