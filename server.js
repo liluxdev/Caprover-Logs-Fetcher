@@ -48,7 +48,6 @@ app.get("/api", async (req, res) => {
         encoding: "utf8",
       }
     );
-    console.log("logResponse", JSON.stringify(logsResponse.data));
     const logs = logsResponse.data.data.logs;
 
     // Get build logs from CapRover API
@@ -61,8 +60,15 @@ app.get("/api", async (req, res) => {
     );
     console.log("buildLogsResponse", JSON.stringify(buildLogsResponse.data));
     const {data} = buildLogsResponse.data;
-
-    res.send(JSON.stringify({ isAppBuilding: data.isAppBuilding, logs, buildLogs: data.logs, appData: data,allowedApps }));
+    const response = { 
+       isAppBuilding: data.isAppBuilding,
+       logs,
+       buildLogs: data.logs,
+       appData: data,
+       allowedApps 
+    };
+    console.log("sending response", JSON.stringify(response));
+    res.send(JSON.stringify(response));
   } catch (error) {
     console.error(error.message);
     res.status(500).send(JSON.stringify({error:"Errore nel recuperare i log: " + error.message}));
