@@ -76,7 +76,7 @@ app.get("/api", async (req, res) => {
     logs = logs.length > MAX_LOG_CHARS ? logs.slice(-MAX_LOG_CHARS) : logs;
     let responseLogLen = logs.length;
 
-    console.log("hex logs", logs.length, logs);
+    console.log("hex logs", logs.length, originalLogLen);
 
     let buffer = Buffer.from(logs, 'hex');
 
