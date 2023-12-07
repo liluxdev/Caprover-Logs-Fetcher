@@ -120,7 +120,7 @@ router.get("/api", async (ctx) => {
     const appDefinition = appDefinitions.data.data.appDefinitions.find(
       (app) => app.name === appName
     );
-    if (!appDefinition) {
+    if (false && !appDefinition) {
       ctx.status = 400;
       ctx.body = { error: "App non trovata" };
       return;
@@ -135,7 +135,7 @@ router.get("/api", async (ctx) => {
       isBuildFailed: data.isBuildFailed,
       originalLogLen,
       responseLogLen,
-      appDefinitions: appDefinition,
+      appDefinitions: appDefinitions,
     };
   } catch (error) {
     console.trace(error);
