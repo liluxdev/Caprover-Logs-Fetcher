@@ -14,6 +14,7 @@ app.get("/logs", (req, res) => {
 });
 
 app.get("/api", async (req, res) => {
+  res.set("Content-Type", "application/json"); // Set JSON response header
   try {
     //check secret
     const secret = req.query.secret;
@@ -67,6 +68,7 @@ app.get("/api", async (req, res) => {
        appData: data,
        allowedApps 
     };
+    I
     console.log("sending response", JSON.stringify(response));
     res.send(JSON.stringify(response));
   } catch (error) {
