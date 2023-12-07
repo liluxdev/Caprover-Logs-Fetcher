@@ -254,8 +254,8 @@ async function fetchLogs() {
       appUrlLink.target = "_blank";
       appUrlLink.rel = "noopener noreferrer";
       appUrlLink.className = "app-url-link";
-      appUrlLink.innerHTML = `| <i class="fas fa-globe"></i> ${appUrl}`;
-      document.querySelector(".app-url-container").innerHTML= appUrlLink.outerHTML;
+      appUrlLink.innerHTML = `<i class="fas fa-globe"></i> ${appUrl}`;
+      document.querySelector(".app-url-container").innerHTML= "| "+ appUrlLink.outerHTML;
 
       //if appDefinition.notExposeAsWebApp show the internal srv-captain--appname:port
       if (appDefinition.notExposeAsWebApp) {
@@ -265,8 +265,8 @@ async function fetchLogs() {
         appUrlInternalLink.target = "_blank";
         appUrlInternalLink.rel = "noopener noreferrer";
         appUrlInternalLink.className = "app-url-link";
-        appUrlInternalLink.innerHTML = `| <i class="fas fa-server"></i> <pre style="display:inline-block; padding: 0px;">${internalName}</pre>`;
-        document.querySelector(".app-url-container").innerHTML= appUrlInternalLink.outerHTML;
+        appUrlInternalLink.innerHTML = `| <i class="fas fa-server"></i> <pre style="display:inline-block; margin:0px; padding: 0px;">${internalName}</pre>`;
+        document.querySelector(".app-url-container").innerHTML= "| " +appUrlInternalLink.outerHTML;
       }
     }
 
