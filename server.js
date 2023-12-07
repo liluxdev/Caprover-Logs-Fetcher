@@ -128,7 +128,7 @@ router.get("/api", async (ctx) => {
     }
 
     //generate appUrl contactenating appDefinition.appName and data.captainSubDomain and rootDomain
-    let appUrl = `https://${appDefinition.appName}.${appsData.captainSubDomain}.${appsData.rootDomain}`;
+    let appUrl = `https://${appDefinition.appName}.${appsData.rootDomain}`;
     //if appDefinition.customDomain[0].publicDomain use it
     if (appDefinition.customDomain[0]?.publicDomain) {
       appUrl = `https://${appDefinition.customDomain[0].publicDomain}`;
