@@ -117,7 +117,8 @@ router.get("/api", async (ctx) => {
     );
 
     //find appName in appDefinitions
-    const appDefinition = appDefinitions.data.data.appDefinitions.find(
+    const appsData = appDefinitions.data.data;
+    const appDefinition = appsData.appDefinitions.find(
       (app) => app.appName === appName
     );
     if (!appDefinition) {
@@ -127,7 +128,7 @@ router.get("/api", async (ctx) => {
     }
 
     //generate appUrl contactenating appDefinition.appName and data.captainSubDomain and rootDomain
-    const appUrl = `http${appDefinition.forceSsl?"s":""}://${appDefinition.appName}.${data.captainSubDomain}.${data.rootDomain}`;
+    const appUrl = `http${appDefinition.forceSsl?"s":""}://${appDefinition.appName}.${appsData.captainSubDomain}.${appsData.rootDomain}`;
     //
 
 
