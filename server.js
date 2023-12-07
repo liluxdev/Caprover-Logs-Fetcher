@@ -98,12 +98,20 @@ app.get("/api", async (req, res) => {
       appData: data,
       allowedApps,
     };
+
+    const response2 = {
+      isAppBuilding: 2,
+      logs,
+      buildLogs: {},
+      appData: {},
+      allowedApps,
+    };
     console.log(
       "sending response for " + appName,
       JSON.stringify(Object.keys(response).length),
-      response
+      response2
     );
-    res.send(response);
+    res.send(response2);
     //console.log("sending response json",response);
   } catch (error) {
     console.trace(error);
