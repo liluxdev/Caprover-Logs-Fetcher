@@ -94,8 +94,8 @@ app.get("/api", async (req, res) => {
     const response = {
       isAppBuilding: data.isAppBuilding,
       logs,
-      buildLogs: data.logs,
-      appData: data,
+      buildLogs: data.logs.lines.join("\n"),
+     // appData: data,
       allowedApps,
     };
 
@@ -109,9 +109,9 @@ app.get("/api", async (req, res) => {
     console.log(
       "sending response for " + appName,
       JSON.stringify(Object.keys(response).length),
-      response2
+      response
     );
-    res.send(response2);
+    res.send(response);
     //console.log("sending response json",response);
   } catch (error) {
     console.trace(error);

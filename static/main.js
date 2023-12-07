@@ -73,12 +73,12 @@ async function fetchLogs() {
       });
       return;
    }
-   let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps, appData } = resp;
-    console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps, appData });
+   let { logs: consoleLogs, buildLogs, isAppBuilding, allowedApps } = resp;
+    console.log({ consoleLogs, buildLogs, isAppBuilding, allowedApps });
 
     populateAllowedApps(allowedApps);
 
-    buildLogs = buildLogs.lines.join("\n");
+    //buildLogs = buildLogs.lines.join("\n");
 
     let consoleLogsUpdated = false, buildLogsUpdated = false;
   
