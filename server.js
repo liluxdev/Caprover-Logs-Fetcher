@@ -118,7 +118,7 @@ router.get("/api", async (ctx) => {
 
     //find appName in appDefinitions
     const appDefinition = appDefinitions.data.data.appDefinitions.find(
-      (app) => app.name === appName
+      (app) => app.appName === appName
     );
     if (!appDefinition) {
       ctx.status = 400;
