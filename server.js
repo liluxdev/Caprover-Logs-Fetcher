@@ -63,7 +63,7 @@ app.get("/api", async (req, res) => {
       `${caproverUrl}api/v2/user/apps/appData/${appName}/logs`,
       {
         headers: { "x-captain-auth": token },
-        encoding: "utf8",
+        encoding: "hex",
       },
       {
         timeout: 2000, // Timeout impostato a 5000 millisecondi
@@ -80,7 +80,7 @@ app.get("/api", async (req, res) => {
       `${caproverUrl}api/v2/user/apps/appData/${appName}`,
       {
         headers: { "x-captain-auth": token },
-        encoding: "utf8",
+      //  encoding: "hex",
       },
       {
         timeout: 2000, // Timeout impostato a 5000 millisecondi
