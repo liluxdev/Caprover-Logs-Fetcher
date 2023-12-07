@@ -265,7 +265,7 @@ async function fetchLogs() {
         appUrlInternalLink.innerHTML = `<i class="fas fa-server"></i> <pre style="display:inline-block; margin:0px; position: relative; top: 6px;">${internalName}</pre>`;
         //span copy to clipboard text when clicked
         appUrlInternalLink.style.cursor = "pointer";
-        appUrlInternalLink.addEventListener("click", (e) => {
+        document.querySelector(".app-url-container").removeEventListener("click").addEventListener("click", (e) => {
           e.preventDefault();
           navigator.clipboard.writeText(internalName);
           toast.info("Nome interno copiato negli appunti: "+internalName, "Copiato", {
