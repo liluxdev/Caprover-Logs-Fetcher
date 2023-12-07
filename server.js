@@ -150,4 +150,4 @@ app.get("/api", async (req, res) => {
 const server = app.listen(port, () => {
   console.log(`Server in ascolto sulla porta ${port}`);
 });
-server.timeout = 500000; // Imposta un timeout personalizzato, es. 500000 ms (500 secondi)
+server.timeout = 5000; // Imposta un timeout personalizzato, es. 500000 ms (500 secondi)
