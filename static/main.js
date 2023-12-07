@@ -145,12 +145,12 @@ async function fetchLogs() {
 
     let consoleLogsUpdated = false,
       buildLogsUpdated = false;
-
+      
     const newLogs = `<pre>${consoleLogs}</pre>`;
     //  const oldHtmlConsole = document.querySelector(".console-logs").innerHTML.trim();
     // console.log({oldHtmlConsole, newLogs, equals: oldHtmlConsole === newLogs.trim()});
 
-    const diffLogs = Diff.diffChars(oldConsole, newLogs);
+    const diffLogs = "disabled-diffing";//Diff.diffChars(oldConsole, newLogs);
 
     if (oldConsole == "" || oldConsole !== newLogs) {
       console.warn("Console logs updated", {
