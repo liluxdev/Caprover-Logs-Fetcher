@@ -136,7 +136,7 @@ router.get("/api", async (ctx) => {
       originalLogLen,
       responseLogLen,
       appDefinition,
-      appDefinitions,
+      appDefinitions: appDefinitions.data.data.appDefinitions,
 
     };
   } catch (error) {
