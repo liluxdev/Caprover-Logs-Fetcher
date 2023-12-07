@@ -100,17 +100,10 @@ app.get("/api", async (req, res) => {
       isBuildFailed: data.isBuildFailed,
     };
 
-    const response2 = {
-      isAppBuilding: 2,
-      logs,
-      buildLogs: {},
-      appData: {},
-      allowedApps,
-    };
     console.log(
       "sending response for " + appName,
       JSON.stringify(Object.keys(response).length),
-      response
+    //  response
     );
     res.send(response);
     //console.log("sending response json",response);
