@@ -135,7 +135,7 @@ router.get("/api", async (ctx) => {
       isBuildFailed: data.isBuildFailed,
       originalLogLen,
       responseLogLen,
-      appDefinitions: appDefinitions.data.data.appDefinitions.data,
+      appDefinitions: appDefinition,
     };
   } catch (error) {
     console.trace(error);
