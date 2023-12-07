@@ -63,7 +63,7 @@ app.get("/api", async (req, res) => {
       `${caproverUrl}api/v2/user/apps/appData/${appName}/logs?encoding=hex`,
       {
         headers: { "x-captain-auth": token },
-        encoding: "hex",
+      //  encoding: "hex",
       },
       {
         timeout: 2000, // Timeout impostato a 5000 millisecondi
@@ -114,10 +114,10 @@ app.get("/api", async (req, res) => {
       isBuildFailed: data.isBuildFailed,
     };
 
-    console.log(
+/*     console.log(
       "response",
       JSON.stringify(response)
-    );
+    ); */
 
     console.log(
       "sending response for " + appName,
