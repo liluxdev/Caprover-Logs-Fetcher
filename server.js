@@ -136,7 +136,7 @@ router.get("/api", async (ctx) => {
       originalLogLen,
       responseLogLen,
       appDefinition,
-      domain: appDefinitions.data.data.captainSubdomanin+"."+appDefinitions.data.data.rootDomain,
+      domain: appDefinitions.data.data.captainSubdomain+"."+appDefinitions.data.data.rootDomain,
 
     };
   } catch (error) {
