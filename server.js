@@ -109,7 +109,7 @@ router.get("/api", async (ctx) => {
 
 
     const appDefinitions = await axios.get(
-      `${caproverUrl}api/v2/user/${appName}/appDefinitions`,
+      `${caproverUrl}api/v2/user/${appName}`,
       {
         headers: { "x-captain-auth": token },
         timeout: 2000,
