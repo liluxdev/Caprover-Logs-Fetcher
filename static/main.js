@@ -368,5 +368,5 @@ async function fetchLogs() {
 window.onload = fetchLogs;
 
 if (enabledAutoRefresh) {
-  setInterval(() => fetchLogs(), 5000);
+  setInterval(() => fetchLogs(), 10*1000);
 }
