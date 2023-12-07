@@ -1,0 +1,124 @@
+/* Stile predefinito per tutte le scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Traccia dello scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Maniglia dello scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Stato al passaggio del mouse sulla maniglia */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* Per Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+}
+.log-container {
+  background-color: #333 !important;
+  color: orange !important;
+}
+.log-container pre {
+  padding: 10px;
+  color: #fafafa !important;
+  overflow: hidden;
+  transition: color 0.5s ease-in-out;
+}
+
+.log-container.build-logs pre {
+  color: orange !important;
+}
+
+.log-container.console-logs:hover pre {
+  color: skyblue !important;
+  cursor: text;
+}
+
+.log-container.build-logs:hover pre {
+  color: skyblue !important;
+  cursor: text;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#toolbar {
+  padding: 10px;
+  background-color: #f8f9fa; /* Colore di sfondo della barra degli strumenti */
+}
+#container {
+  display: flex;
+}
+.log-container {
+  padding: 10px;
+}
+.log-container pre {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-width: 100%;
+  margin: 0px;
+  width: 100%;
+}
+#left-pane,
+#right-pane {
+  display: flex;
+  /*flex: 1; /* Entrambi i pannelli prendono lo stesso spazio inizialmente */
+  min-width: 10%; /* Imposta la larghezza iniziale */
+  max-width: 100%;
+  background-color: #333;
+  color: #fafafa;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow: hidden;
+}
+
+#left-pane {
+  overflow: scroll;
+  resize: horizontal; /* Permette il ridimensionamento orizzontale */
+}
+
+#right-pane {
+  height: 100%;
+}
+
+/* Stile per la barra di ridimensionamento */
+.ui-resizable-handle,
+.gutter {
+  background-color: #fafafa;
+  width: 17px;
+  cursor: ew-resize;
+}
+
+.custom-select {
+  width: auto;
+}
+#container {
+  display: flex;
+  height: calc(100% - 58px);
+}
+
+#left-pane,
+#right-pane {
+  overflow-y: hidden; /* Aggiungi scrollbar se necessario */
+  overflow-x: hidden;
+}

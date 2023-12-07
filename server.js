@@ -7,10 +7,10 @@ const caproverPassword = process.env.CAPROVER_PASSWORD;
 const allowedApps = process.env.ALLOWED_APPS.split(",");
 const SECRTET = process.env.SECRET;
 
-app.use(express.static("."));
+app.use(express.static("./static/"));
 
 app.get("/logs", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/static/index.html");
 });
 
 app.get("/api", async (req, res) => {
@@ -62,7 +62,7 @@ app.get("/api", async (req, res) => {
     console.log("buildLogsResponse", JSON.stringify(buildLogsResponse.data));
     const {data} = buildLogsResponse.data;
 
-    res.status(200).send(JSON.stringify({ isAppBuilding: data.isAppBuilding, logs, buildLogs: data.logs, appData: data,allowedApps }));
+    res.send(JSON.stringify({ isAppBuilding: data.isAppBuilding, logs, buildLogs: data.logs, appData: data,allowedApps }));
   } catch (error) {
     console.error(error.message);
     res.status(500).send(JSON.stringify({error:"Errore nel recuperare i log: " + error.message}));
