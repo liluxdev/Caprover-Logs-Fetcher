@@ -70,7 +70,7 @@ app.get("/api", async (req, res) => {
       }
     );
 
-    console.log("logsResponse", JSON.stringify(Object.keys(logsResponse.data).length);
+    console.log("logsResponse", JSON.stringify(Object.keys(logsResponse.data).length));
     const logs = logsResponse.data.data.logs;
 
     console.log("hex logs", logs);
