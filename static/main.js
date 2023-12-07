@@ -68,8 +68,10 @@ async function fetchLogs() {
     // Aggiungi qui la logica per recuperare i log dalla console e i log di build
     // Ad esempio, una richiesta GET al tuo server Express
     const respCheck = await fetch(fetchUrl);
+
+    const respText = await respCheck.text();
     // Controlla se la risposta è vuota
-    if (!respCheck.ok || respCheck.status !== 200) {
+    if (!respCheck.ok || respCheck.status !== 200 || respText === "") {
       toastr.error("Errore del server o risposta vuota", "Errore", {
         closeButton: true,
         progressBar: true,
