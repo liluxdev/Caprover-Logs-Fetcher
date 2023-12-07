@@ -83,6 +83,7 @@ router.get('/api', async (ctx) => {
       isAppBuilding: data.isAppBuilding,
       logs: utf8String,
       buildLogs: data.logs.lines.join("\n"),
+      buildLogsOrig: data.logs,
       allowedApps,
       isBuildFailed: data.isBuildFailed,
       originalLogLen,
