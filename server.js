@@ -66,7 +66,7 @@ app.get("/api", async (req, res) => {
        isAppBuilding: data.isAppBuilding,
        logs,
        buildLogs: data.logs,
-       appData: data,
+      // appData: data,
        allowedApps 
     };
     console.log("sending response", JSON.stringify(Object.keys(response).length));
