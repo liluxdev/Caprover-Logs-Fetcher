@@ -101,7 +101,7 @@ router.get("/api", async (ctx) => {
 
     ctx.body = {
       isAppBuilding: data.isAppBuilding,
-      logs: "",
+      logs: logs,
       buildLogs: data.logs.lines.join("\n"),
       buildLogDebug: data.logs.lines,
       allowedApps,
