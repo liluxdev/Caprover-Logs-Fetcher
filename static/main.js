@@ -255,7 +255,7 @@ async function fetchLogs() {
       appUrlLink.rel = "noopener noreferrer";
       appUrlLink.className = "app-url-link";
       appUrlLink.innerHTML = `<i class="fas fa-globe"></i> ${appUrl}`;
-      document.querySelector(".app-url-container").appendChild(appUrlLink);
+      document.querySelector(".app-url-container").innerHTML= appUrlLink.outerHTML;
     }
 
     //   const isBuildFailed = isBuildFailed;
