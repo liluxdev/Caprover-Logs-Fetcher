@@ -41,7 +41,8 @@ app.use(
 app.use(serve("./static/"));
 
 router.get("/logs", async (ctx) => {
-  ctx.sendFile(path.join(__dirname, "/static/index.html"));
+  //redirect to / with query string preserved
+  ctx.redirect(`/?appName=${ctx.query.appName}&secret=${ctx.query.secret}`);
 });
 
 router.get("/api", async (ctx) => {
