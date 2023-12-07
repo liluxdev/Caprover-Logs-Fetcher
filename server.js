@@ -50,7 +50,7 @@ app.get("/api", async (req, res) => {
       }
     );
     const logs = logsResponse.data.data.logs;
-    console.log("logsResponse", JSON.stringify(logsResponse.data));
+    console.log("logsResponse", JSON.stringify(Object.keys(logsResponse.data).length));
 
     // Get build logs from CapRover API
     const buildLogsResponse = await axios.get(
@@ -60,7 +60,7 @@ app.get("/api", async (req, res) => {
         encoding: "utf8",
       }
     );
-    console.log("buildLogsResponse", JSON.stringify(buildLogsResponse.data));
+    console.log("buildLogsResponse", JSON.stringify(Object.keys(buildLogsResponse.data).length));
     const {data} = buildLogsResponse.data;
     const response = { 
        isAppBuilding: data.isAppBuilding,
@@ -69,7 +69,7 @@ app.get("/api", async (req, res) => {
        appData: data,
        allowedApps 
     };
-    console.log("sending response", JSON.stringify(response));
+    console.log("sending response", JSON.stringify(isAppBuilding));
     res.send(JSON.stringify(response));
   } catch (error) {
     console.trace(error);
