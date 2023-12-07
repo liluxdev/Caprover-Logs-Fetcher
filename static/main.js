@@ -159,7 +159,7 @@ async function fetchLogs() {
         diffLogs,
       });
       if (
-        document.querySelector(".console-logs:hover") === null &&
+        document.querySelector(".console-logs:hover") !== null &&
         oldConsole != ""
       ) {
         console.warn("Update prevented by hover state",   document.querySelector(".console-logs:hover"));
@@ -180,7 +180,7 @@ async function fetchLogs() {
     if (oldBuild == "" || oldBuild !== newBuildLogs) {
       oldBuild = newBuildLogs;
       if (
-        document.querySelector(".build-logs:hover") === null &&
+        document.querySelector(".build-logs:hover") !== null &&
         oldBuild != ""
       ) {
         console.warn("Update prevented by hover state",    document.querySelector(".build-logs:hover"));
