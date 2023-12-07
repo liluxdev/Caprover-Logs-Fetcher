@@ -144,9 +144,9 @@ async function fetchLogs() {
           console.warn("Update prevented by hover state");
         } else {
           document.querySelector(".console-logs").innerHTML = newLogs;
+          oldConsole = newLogs;
         }
       }
-      oldConsole = newLogs;
       consoleLogsUpdated = true;
     }
 
