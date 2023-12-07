@@ -265,8 +265,8 @@ async function fetchLogs() {
         appUrlInternalLink.target = "_blank";
         appUrlInternalLink.rel = "noopener noreferrer";
         appUrlInternalLink.className = "app-url-link";
-        appUrlInternalLink.innerHTML = `| <i class="fas fa-server"></i> <pre style="display:inline-block; margin:0px; position: relative; top: 6px;">${internalName}</pre>`;
-        document.querySelector(".app-url-container").innerHTML= "| " +appUrlInternalLink.outerHTML;
+        appUrlInternalLink.innerHTML = `<i class="fas fa-server"></i> <pre style="display:inline-block; margin:0px; position: relative; top: 6px;">${internalName}</pre>`;
+        document.querySelector(".app-url-container").innerHTML = "| " +appUrlInternalLink.outerHTML;
       }
     }
 
