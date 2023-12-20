@@ -22,7 +22,7 @@ function populateAllowedApps(allowedApps) {
     appNameSelect.add(option);
   });
 }
-window.bttRefreshLabel = "Aggiorna Log";
+window.bttRefreshLabel = "Update Logs";
 async function fetchLogs() {
   if (!document.querySelector("#bttRefresh").classList.contains("standby")) {
     toastr.error(
