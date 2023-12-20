@@ -22,15 +22,15 @@ In ogni caso, è affascinante vedere come i miti e la simbologia possano influen
  */
 
 
-// Middleware per controllare se la richiesta è HTTPS
-app.use(async (ctx, next) => {
+// Middleware per controllare se la richiesta è HTTPS/* 
+/*app.use(async (ctx, next) => {
   if (ctx.protocol === "http") {
     ctx.status = 400;
     ctx.body = { error: "Enable HTTPS for security reasons." };
     return;
   }
   await next();
-});
+}); */
 
 // Configurazione della compressione
 app.use(
