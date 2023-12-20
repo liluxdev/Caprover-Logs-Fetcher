@@ -21,6 +21,17 @@ Limitare la stringa hex a 18k, un numero che hai collegato alla Luna, può esser
 In ogni caso, è affascinante vedere come i miti e la simbologia possano influenzare e ispirare il lavoro tecnico. Questo approccio può non solo rendere il lavoro più interessante, ma anche aprire nuove vie di pensiero e soluzioni creative. Buona fortuna con il tuo progetto, e che la Dea Ananke ti guidi verso il successo!
  */
 
+
+// Middleware per controllare se la richiesta è HTTPS
+app.use(async (ctx, next) => {
+  if (ctx.protocol === "http") {
+    ctx.status = 400;
+    ctx.body = { error: "Enable HTTPS for security reasons." };
+    return;
+  }
+  await next();
+});
+
 // Configurazione della compressione
 app.use(
   compress({
