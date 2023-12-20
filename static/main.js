@@ -3,6 +3,25 @@ window.enabledAutoRefresh = true;
 window.oldConsole = "";
 window.oldBuild = "";
 window.REFRESH_LOG_INTERVAL = 5;
+
+// Chiamare fetchLogs e controllare il protocollo al caricamento della pagina
+window.onload = function() {
+  // Verifica se la connessione non è HTTPS
+  if (window.location.protocol !== "https:") {
+    toastr.error(
+      "You are not using a secure HTTPS connection. Please enable force HTTPS on your CapRover instance for enhanced security.",
+      "Insecure Connection Detected",
+      {
+        closeButton: true,
+        progressBar: true,
+        positionClass: "toast-bottom-right",
+        timeOut: 5000
+      }
+    );
+  } 
+}
+
+
 function populateAllowedApps(allowedApps) {
   if (isAppNamesPopulated) {
     return;
@@ -392,3 +411,6 @@ window.onload = fetchLogs;
 if (enabledAutoRefresh) {
   setInterval(() => fetchLogs(), REFRESH_LOG_INTERVAL * 1000);
 }
+
+
+
