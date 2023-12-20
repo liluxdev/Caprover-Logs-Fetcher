@@ -26,8 +26,8 @@ window.bttRefreshLabel = "Aggiorna Log";
 async function fetchLogs() {
   if (!document.querySelector("#bttRefresh").classList.contains("standby")) {
     toastr.error(
-      "Attendere il completamento del caricamento dei log",
-      "Errore",
+      "Please wait for the previous refresh to finish",
+      "Error",
       {
         closeButton: true,
         progressBar: true,
@@ -41,7 +41,7 @@ async function fetchLogs() {
     );
     return;
   }
-  document.querySelector("#bttRefresh").innerHTML = "Aggiornando...";
+  document.querySelector("#bttRefresh").innerHTML = "Updating...";
   // document.querySelector("#bttRefresh").classList.remove("standby");
 
   try {
@@ -74,7 +74,7 @@ async function fetchLogs() {
     console.log({ respText });
     // Controlla se la risposta è vuota
     if (!respCheck.ok || respCheck.status !== 200 || respText.trim === "") {
-      toastr.error("Errore del server o risposta vuota", "Errore", {
+      toastr.error("Server error or empty response", "Error", {
         closeButton: true,
         progressBar: true,
         positionClass: "toast-bottom-right",
@@ -88,7 +88,7 @@ async function fetchLogs() {
 
     let { error } = resp;
     if (error) {
-      toastr.error(error, "Errore", {
+      toastr.error(error, "Error", {
         closeButton: true,
         progressBar: true,
         positionClass: "toast-bottom-right",
@@ -143,11 +143,11 @@ async function fetchLogs() {
     console.warn({ consoleLogs });
 
     document.querySelector("#char-limit-info").innerHTML =
-      "| <strong>Console log:</strong> mostrando ultimi " +
+      "| <strong>Console log:</strong> showing last " +
       responseLogLen / 1000 +
-      "k caratteri su " +
+      "k chars su " +
       originalLogLen / 1000 +
-      "k totali";
+      "k total";
 
     populateAllowedApps(allowedApps);
 
@@ -175,9 +175,9 @@ async function fetchLogs() {
           "Update prevented by hover state",
           document.querySelector(".console-logs:hover")
         );
-        toastr.info(
-          "Sei in hover sulla console, per vedere i nuovi log esci dall'hover",
-          "Console non aggiornata",
+        toastr.error(
+          "Update prevented by hover state",
+          "Console not updated",
           {
             closeButton: true,
             progressBar: true,
@@ -217,9 +217,9 @@ async function fetchLogs() {
           "Update prevented by hover state",
           document.querySelector(".build-logs:hover")
         );
-        toastr.info(
-          "Sei in hover sulla console di build, per vedere i nuovi log esci dall'hover",
-          "Console di build non aggiornata",
+        toastr.error(
+          "Update prevented by hover state",
+          "Build logs console not updated",
           {
             closeButton: true,
             progressBar: true,
@@ -275,8 +275,8 @@ async function fetchLogs() {
           e.preventDefault();
           navigator.clipboard.writeText(internalName);
           toastr.info(
-            "Nome interno copiato negli appunti: " + internalName,
-            "Copiato",
+            "Internal name copied into the clipboard: " + internalName,
+            "Copied to clipboard",
             {
               closeButton: true,
               progressBar: true,
@@ -359,7 +359,7 @@ async function fetchLogs() {
 
     // Mostra un messaggio toast dopo l'aggiornamento dei log
     if (consoleLogsUpdated) {
-      toastr.success("Ci sono nuovi log in console", "Aggiornamento", {
+      toastr.success("There are new logs in console", "New Console Logs", {
         closeButton: true,
         progressBar: true,
         positionClass: "toast-bottom-right",
@@ -367,7 +367,7 @@ async function fetchLogs() {
       });
     }
     if (buildLogsUpdated) {
-      toastr.warning("Ci sono nuovi log di build", "Build", {
+      toastr.warning("There are new logs in build console", "New Build Logs", {
         closeButton: true,
         progressBar: true,
         positionClass: "toast-bottom-right",
@@ -376,7 +376,7 @@ async function fetchLogs() {
     }
   } catch (error) {
     console.error("Errore nel recupero dei log:", error);
-    toastr.error("Errore nel recupero dei log" + error, "Errore", {
+    toastr.error("Error in log fetcher" + error, "Errore", {
       closeButton: true,
       progressBar: true,
       positionClass: "toast-bottom-right",
