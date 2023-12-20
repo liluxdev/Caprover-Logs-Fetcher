@@ -80,7 +80,6 @@ async function fetchLogs() {
         positionClass: "toast-bottom-right",
         timeOut: 5000,
       });
-      return;
     }
 
     // Continua solo se la risposta contiene dati
