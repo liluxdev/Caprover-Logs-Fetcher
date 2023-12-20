@@ -50,28 +50,28 @@ router.get("/api", async (ctx) => {
     const secret = ctx.query.secret;
     if (!secret) {
       ctx.status = 400;
-      ctx.body = { error: 'Il parametro "secret" è obbligatorio' };
+      ctx.body = { error: 'The "secret" parameter is mandatory' };
       return;
     }
     if (secret !== SECRET) {
       ctx.status = 400;
-      ctx.body = { error: 'Il parametro "secret" non è valido' };
+      ctx.body = { error: 'The "secret" parameter is not valid' };
       return;
     }
 
     const appName = ctx.query.appName;
     if (!appName) {
       ctx.status = 400;
-      ctx.body = { error: 'Il parametro "appName" è obbligatorio' };
+      ctx.body = { error: 'The "appName" parameter is mandatory' };
       return;
     }
     if (!allowedApps.includes(appName)) {
       ctx.status = 400;
-      ctx.body = { error: 'Il parametro "appName" non è valido' };
+      ctx.body = { error: '"appName" parameter is not allowed' };
       return;
     }
 
-    console.log("Recuperando i log da CapRover", appName);
+    console.log("Fetching CapRover logs for app", appName);
     const tokenResponse = await axios.post(
       `${caproverUrl}api/v2/login`,
       { password: caproverPassword },
@@ -123,7 +123,7 @@ router.get("/api", async (ctx) => {
     );
     if (!appDefinition) {
       ctx.status = 400;
-      ctx.body = { error: "App non trovata" };
+      ctx.body = { error: "App not found" };
       return;
     }
 
@@ -154,13 +154,13 @@ router.get("/api", async (ctx) => {
   } catch (error) {
     console.trace(error);
     ctx.status = 500;
-    ctx.body = { error: "Errore nel recuperare i log: " + error.message };
+    ctx.body = { error: "Error in fetching logs: " + error.message };
   }
 });
 
 app.use(router.routes()).use(router.allowedMethods());
 
 const server = app.listen(port, () => {
-  console.log(`Server Koa in ascolto sulla porta ${port}`);
+  console.log(`Server Koa listening on port ${port}`);
 });
 server.timeout = 5000; // Imposta un timeout personalizzato
