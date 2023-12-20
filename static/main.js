@@ -158,7 +158,7 @@ async function fetchLogs() {
     const newLogs = `<pre>${
       consoleLogs.trim() !== ""
         ? consoleLogs
-        : "Nessun log di console disponibile"
+        : "Console is empty. Please wait for the first log to appear."
     }</pre>`;
     //  const oldHtmlConsole = document.querySelector(".console-logs").innerHTML.trim();
     // console.log({oldHtmlConsole, newLogs, equals: oldHtmlConsole === newLogs.trim()});
@@ -199,7 +199,7 @@ async function fetchLogs() {
     }
 
     const newBuildLogs = `<pre>${
-      buildLogs.trim() !== "" ? buildLogs : "Nessun log di build disponibile"
+      buildLogs.trim() !== "" ? buildLogs : "Build console is empty. Maybe the last build is too old."
     }</pre>`;
     const diffBuild = "diffing-disabled"; //Diff.diffChars(oldBuild, newBuildLogs);
 
